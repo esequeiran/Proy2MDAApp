@@ -1,0 +1,69 @@
+﻿    @using WebApp.Models.Helpers;
+    <script src="~/Scripts/Views/ControlActionsAdrian.js"></script>
+<script src="~/Scripts/Views/vTipoTrabajo.js"></script>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*Despliga la lista*@
+@*@Html.CtrlTable(viewName: "vTipoTrabajo", id: "tblTipoTrabajo", title: "Tipo de Trabajo lista",
+    columnsTitle: "Tipos de trabajo,Especialidad,Estado",
+    ColumnsDataName: "Nombre_TipoTrabajo,Nombre_Especialidad,Nombre_Estado", onSelectFunction: "BindFields")*@
+
+@Html.CtrlTable(viewName: "vTipoTrabajo", id: "tblTipoTrabajo", title: "Tipo de Trabajo lista",
+    columnsTitle: "Tipos de trabajo,Especialidad,Estado",
+    ColumnsDataName: "Nombre_TipoTrabajo,Nombre_Especialidad,Nombre_Estado", onSelectFunction: "BindFields")
+
+
+<div class="card border-secondary" style="margin-top: 50px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Edición de Tipo Trabajo</div>
+
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vTipoTrabajo", id: "btnCreate", label: "Registrar", onClickFunction: "Create", buttonType: "success")
+                @Html.CtrlButton(viewName: "vTipoTrabajo", id: "btnUpdate", label: "Modificar", onClickFunction: "Update", buttonType: "info")
+                @Html.CtrlButton(viewName: "vTipoTrabajo", id: "btnDelete", label: "Cambiar estado", onClickFunction: "Delete", buttonType: "primary")
+
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bs-component">
+
+                    <form id="frmEdition">
+
+                        <div hidden>
+                            @Html.CtrlInput(id: "txtidTipoTrabajo", type: "text", label: "Id TipoTrabajo", columnDataName: "Id_TipoTrabajo")
+                        </div>
+
+                        @Html.CtrlDropDown(id: "sltEspecialidades", label: "Seleccione una especialidad", listId: "Especialidad", columnDataName: "Id_Number")
+                        
+                        @Html.CtrlInput(id: "txtNombreTipoTrabajo", type: "text", label: "Nombre TipoTrabajo", columnDataName: "Nombre_TipoTrabajo")
+
+                        <div class="d-none">
+                            @Html.CtrlInput(id: "txtIdEstado", type: "text", label: "Estado", columnDataName: "Id_Estado")
+
+
+                        </div>
+
+                        @*MODAL*@
+                        @*@Html.CtrlModalModel(id: "envio", title: "Confirmación", idParrafo: "1", contenidoParrafo: "¿Esta seguro que desea eliminar este elemento?", viewName: "", idModal: "ready", label: "Aceptar")*@
+
+                        @Html.CtrlModalModel(id: "envio", title: "Confirmación", idParrafo: "1", contenidoParrafo: "¿Esta seguro que desea cambiar el estado?", viewName: "vTipoTrabajo", idModal: "ready", label: "Aceptar", onClickFunction: "ConfirmarEliminar")
+
+
+
+
+                        @*@Html.CtrlDropDownWithList(id: "selectTipoMembresia", label: "Tipo Membrecía", listOpt: "seleccioné una opción,premium,básica", columnDataName: "TipoMembresia")*@
+                        @*@Html.CtrlInput(id: "txtEspecialidad", type: "text", label: "Id_Especialidad", columnDataName: "Id_Especialidad")*@
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

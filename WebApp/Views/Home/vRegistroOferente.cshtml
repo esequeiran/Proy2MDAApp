@@ -1,0 +1,212 @@
+﻿@using WebApp.Models.Helpers;
+<script src="~/Scripts/Views/vRegistroOferente.js"></script>
+@*<script src="~/Scripts/Views/vRegistroLocalizacion.js"></script>*@
+<script src="~/Scripts/Views/vCloud.js"></script>
+<script src="~/Scripts/Views/vRegresoInicio.js"></script>
+
+@* CAPCHAT *@
+@using BotDetect.Web.Mvc;
+@* CAPCHAT *@
+
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutSimple.cshtml";
+}
+
+@Html.CtrlModalModel(idModal: "modalRegistrarOferente", title: "Ocurrio un error", idParrafo: "errorRegistro",
+                    viewName: "", id: "", label: "", onClickFunction: "", buttonType: "")
+@Html.CtrlModalModel(idModal: "modalRegistrarOfe", title: "Felicidades", idParrafo: "buenRegistro",
+                    viewName: "", id: "", label: "", onClickFunction: "", buttonType: "")
+
+<div class="card border-secondary" style="margin-top: 50px;  margin-bottom:50px; display: block" id="RegistroUsuario">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Registrar oferente</div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+    <div class="card-body" id="FormularioUsuario">
+        <form autocomplete="off" id="frmUsuario">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="bs-component">
+                        <h2 id="tituloJ" style="display:block">Datos del representante legal</h2>
+                        <h2 id="tituloF" style="display:none">Datos del usuario</h2>
+                        @Html.CtrlRadio(id: "txtRFisico", label: "Oferente físico", columnDataName: "TipoCedulaComercial", value: "Fisico", onchange: "tipoOferente()")
+                        @Html.CtrlRadio(id: "txtRJuridico", label: "Oferente jurídico", columnDataName: "TipoCedulaComercial", value: "Juridico", isChecked: true, onchange: "tipoOferente()")
+                        @Html.CtrlInputRequeridedModel(id: "txtNombre", type: "text", label: "Nombre: ", columnDataName: "Nombre", ariaDescribedby: "valName", idSmall: "valName", pattern: @"([A-a])\w+")
+                        @Html.CtrlInputRequeridedModel(id: "txtApellido1", type: "text", label: "Primer apellido: ", columnDataName: "Apellido1", ariaDescribedby: "valAp1", idSmall: "valAp1", pattern: @"([A-a])\w+")
+                        @Html.CtrlInput(id: "txtApellido2", type: "text", label: "Segundo apellido", columnDataName: "Apellido2")
+                        @Html.CtrlInputRequeridedModel(id: "txtCedula", type: "text", label: "Cédula: ", columnDataName: "Cedula", ariaDescribedby: "valId", idSmall: "valId", pattern: @"[0-9]{9,}")
+                        @Html.CtrlListModel(id: "selectTipoId", label: "Tipo de cédula: ", columnDataName: "TipoCedula", ariaDescribeby: "tipoId", idSmall: "tipoId")
+                        @Html.CtrlListModel(id: "selectGenero", label: "Género", columnDataName: "Genero", ariaDescribeby: "genre", idSmall: "genre")
+                        @Html.CtrlInputRequeridedModel(id: "txtCorreo", type: "email", label: "Correo electrónico: ",
+                        columnDataName: "Correo", ariaDescribedby: "valEmail", idSmall: "valEmail", placeholder: "user@example.com", pattern: @"[^@\s]+@[^@\s]+")
+                        @Html.CtrlInputRequeridedModel(id: "txtTelefono", type: "phone", label: "Teléfono: ", columnDataName: "Telefono", ariaDescribedby: "valTel", idSmall: "valTel", pattern: @"[0-9]{8,}")
+                        @Html.CtrlListModel(id: "selectPaisNacimiento", label: "País de nacimiento", columnDataName: "PaisNacimiento", ariaDescribeby: "valCountry", idSmall: "valCountry")
+                        @Html.CtrlInputRequeridedModel(id: "txtFecNacimiento", type: "date", label: "Fecha de nacimiento: ", columnDataName: "FecNacimiento", ariaDescribedby: "valDate", idSmall: "valDate", min: "1960-01-01", max: "2020-05-05")
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bs-component">
+                        <h2>Datos de la empresa</h2>
+                        @Html.CtrlInputRequeridedModel(id: "txtNombreComercial", type: "text", label: "Nombre comercial: ", columnDataName: "NombreComercial", ariaDescribedby: "valNameC", idSmall: "valNameC", pattern: @"([A-Z,a-z])\w+|([A-Z,a-z]+[\s]+[A-Z,a-z])\w+")
+                        @Html.CtrlInputRequeridedModel(id: "txtRazonSocial", type: "text", label: "Razón social: ", columnDataName: "RazonSocial", ariaDescribedby: "valRazon", idSmall: "valRazon", pattern: @"([A-Z,a-z])\w+|([A-Z,a-z]+[\s]+[A-Z,a-z])\w+")
+                        @Html.CtrlInputRequeridedModel(id: "txtCedulaJuridica", type: "text", label: "Cédula jurídica: ", columnDataName: "CedulaJuridica", ariaDescribedby: "valIdC", idSmall: "valIdC", pattern: @"[0-9]{9,}")
+                        @Html.CtrlInputRequeridedModel(id: "txtFecCreacion", type: "date", label: "Fecha de creación: ", columnDataName: "FecCreacion", ariaDescribedby: "valDateC", idSmall: "valDateC", max: "2020-05-05", min: "1960-01-01")
+                        @Html.CtrlTextArea(id: "txtDescripcion", label: "Descripción: ", columnDataName: "Descripcion", ariaDescribedby: "valDateC", idSmall: "valDateC", maxlength: "300", rows: "5")
+
+                        @*Captcha*@
+                        <div id="botdetect-captcha" data-captchastylename="jqueryFormCaptcha"></div>
+                        @Html.CtrlInputCptchaModelCtrl(id: "userCaptchaInput", type: "text", label: "Escriba los caracteres del cuadro para verificar que no es un robot: ", columnDataName: "", ariaDescribedby: "captcha", idSmall: "captcha", textSmall: "Este campo es requerido.", textSpan: "")
+
+
+
+                        <script src="~/Scripts/jquery-captcha.min.js"></script>
+                        @*Captcha*@
+
+                        <script>
+                            this.tipoOferente = function () {
+                                if ($('#txtRFisico').is(':checked')) {
+                                    $('#tituloJ').css('display', 'none');
+                                    $('#tituloJD').css('display', 'none');
+                                    $('#txtCedulaJuridica').css('display', 'none');
+                                    $('label[for=txtCedulaJuridica]').css('display', 'none');
+                                    $('#valIdC').css('display', 'none');
+                                    $('#tituloF').css('display', 'block');
+                                    $('#tituloFD').css('display', 'block');
+
+                                    $('#txtNombre').val("");
+                                    $('#txtApellido1').val("");
+                                    $('#txtApellido2').val("");
+                                    $('#txtCedula').val("");
+                                    $("#selectTipoId option[value='0']").prop('selected', true);
+                                    $("#selectGenero option[value='0']").prop('selected', true);
+                                    $('#txtCorreo').val("");
+                                    $('#txtTelefono').val("");
+                                    $("#selectPaisNacimiento option[value='0']").prop('selected', true);
+                                    $('#txtFecNacimiento').val("");
+
+                                    $('#txtNombreComercial').val("");
+                                    $('#txtRazonSocial').val("");
+                                    $('#txtCedulaJuridica').val("");
+                                    $('#txtFecCreacion').val("");
+                                    $('#txtDescripcion').val("");
+
+
+                                    $('#txtCedula').blur(function () {
+                                        $('#txtCedulaJuridica').val(this.value);
+                                    });
+
+
+                                } else {
+                                    $('#tituloF').css('display', 'none');
+                                    $('#tituloFD').css('display', 'none');
+                                    $('#tituloJ').css('display', 'block');
+                                    $('#tituloJD').css('display', 'block');
+                                    $('#txtCedulaJuridica').css('display', 'block');
+                                    $('label[for=txtCedulaJuridica]').css('display', 'block');
+                                    $('#valIdC').css('display', 'block');
+                                    $('#txtCedula').off("blur");
+
+
+
+                                    $('#txtNombre').val("");
+                                    $('#txtApellido1').val("");
+                                    $('#txtApellido2').val("");
+                                    $('#txtCedula').val("");
+                                    $("#selectTipoId option[value='0']").prop('selected', true);
+                                    $("#selectGenero option[value='0']").prop('selected', true);
+                                    $('#txtCorreo').val("");
+                                    $('#txtTelefono').val("");
+                                    $("#selectPaisNacimiento option[value='0']").prop('selected', true);
+                                    $('#txtFecNacimiento').val("");
+
+                                    $('#txtNombreComercial').val("");
+                                    $('#txtRazonSocial').val("");
+                                    $('#txtCedulaJuridica').val("");
+                                    $('#txtFecCreacion').val("");
+                                    $('#txtDescripcion').val("");
+
+
+                                }
+                            }
+                        </script>
+                        @Html.CtrlButton(viewName: "vRegistroOferente", id: "btnCrearUsuario", label: "Siguiente", onClickFunction: "CrearUsuario", buttonType: "success")
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<div class="card border-secondary" style="margin-top: 50px; display: none" id="RegistroDocumento">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Registrar oferente</div>
+            <div class="col-md-4">
+
+
+            </div>
+        </div>
+    </div>
+    <div class="card-body" id="FormularioLocalizacion">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bs-component">
+                    <form id="frmDocumentos">
+                        <h2 id="tituloJD" style="display:block">Documentos del representante legal</h2>
+                        <h2 id="tituloFD" style="display:none">Documentos del usuario</h2>
+
+                        <label for="C">(*)Currículum: </label>
+                        <div class="custom-file" id="C">
+                            <input type="file" id="curriculum" class="custom-file-input" lang="es" required>
+                            <label id="curri" class="custom-file-label" for="curriculum">Seleccionar archivo</label>
+                        </div>
+                        <label for="H">(*)Hoja de delincuencia: </label>
+                        <div class="custom-file" id="H">
+                            <input type="file" id="hojaDelincuencia" class="custom-file-input" lang="es" required>
+                            <label id="hojaD" class="custom-file-label" for="hojaDelincuencia">Seleccionar archivo</label>
+                        </div>
+
+                        @Html.CtrlButton(viewName: "vCloud", id: "txtGuardarDocs", label: "Siguiente", onClickFunction: "CrearDocumento", buttonType: "success")
+                    </form>
+                    <script src="~/Scripts/Views/vCloud.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-secondary" style="margin-top: 50px; display: none" id="MensajeFinal">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Registrar oferente</div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+    <div class="card-body" id="MensajeFinal">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bs-component">
+
+                    <h1>Envío de solicitud</h1>
+                    <p>
+                        Su solicitud de registro a sido enviada al administrador de la aplicación, la respuesta sera enviada
+                        a este correo:
+                    </p><p id="correoUsuario"></p>
+
+                    <a href="../" class="btn btn-primary">Regresar a la pantalla principal</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

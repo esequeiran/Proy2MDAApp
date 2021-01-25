@@ -1,0 +1,42 @@
+﻿@using WebApp.Models.Helpers;
+<script src="~/Scripts/Views/vCodigoVerificacion.js"></script>
+
+@{
+    Layout = "~/Views/Shared/_LayoutSimple.cshtml";
+}
+
+@section Styles {
+    <link href="@Url.Content("~/Content/Views/")vTipoRegistro.css" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/Views/")cardsLogins.css" rel="stylesheet" type="text/css">
+}
+
+@Html.CtrlModalModel(idModal: "modalCodigoOferente", title: "UPS!", idParrafo: "errorRegistro",
+                    viewName: "", id: "", label: "", onClickFunction: "", buttonType: "")
+
+<div class="row">
+
+    <div class="col-md-5"></div>
+    <div class="card mt-6" style="width: 23rem;">
+        <div class="card-header">
+            <h3 class="titulo">Código de verificación</h3>
+        </div>
+        <div class="card-block">
+            <div class="card-text " style="font-size: large ; padding: 22px">
+                <form id="frmRecuperarContrasenna">
+
+                    @Html.CtrlInput(id: "txtCodigo", type: "text", label: "", placeHolder: "Ingrese el código de verificación", columnDataName: "Codigo", IsRequired: "required", min: "6", max: "6")
+
+
+                </form>
+            </div>
+        </div>
+        <div class="card-block text-center" style="padding: 22px">
+            @Html.CtrlButton(viewName: "vCodigoVerificacion", id: "btnValidarCodigo", label: "Validar código", onClickFunction: "ValidarCodigo", buttonType: "info")
+
+        </div>
+
+    </div>
+    <div class="col-md-5"></div>
+
+
+</div>

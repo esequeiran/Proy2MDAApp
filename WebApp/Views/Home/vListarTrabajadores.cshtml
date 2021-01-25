@@ -1,0 +1,53 @@
+﻿@using WebApp.Models.Helpers;
+<script src="~/Scripts/Views/vListarTrabajadores.js"></script>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@Html.CtrlTable(viewName: "vListarTrabajadores", id: "tblTrabajadores", title: "Trabajadores",
+    columnsTitle: "Cédula,Nombre,Primer apellido,Segundo apellido, Fecha de nacimiento,Género,Correo,Estado, Número de empresa",
+    ColumnsDataName: "Cedula,Nombre,Apellido1,Apellido2,FecNacimiento,Genero,Correo,IdEstado,IdEmpresa", onSelectFunction: "BindFields")
+
+
+<div class="card border-secondary" style="margin-top: 50px; display: block" id="RegistroTrabajador">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Trabajador</div>
+
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vListarTrabajadores", id: "btnUpdate", label: "Modificar", onClickFunction: "Update", buttonType: "info")
+
+                @Html.CtrlButton(viewName: "vListarTrabajadores", id: "btnActivar", label: "Activar", onClickFunction: "Activar", buttonType: "success")
+                @Html.CtrlButton(viewName: "vListarTrabajadores", id: "btnSuspender", label: "Suspender", onClickFunction: "Suspender", buttonType: "danger")
+            </div>
+        </div>
+    </div>
+    <div class="card-body" id="FormularioTrabajador">
+        <form autocomplete="off" id="frmTrabajador">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="bs-component">
+                        <h2 id="tituloT" style="display:block">Datos del trabajador</h2>
+
+                        @Html.CtrlInputRequeridedModel(id: "txtNombre", type: "text", label: "Nombre: ", columnDataName: "Nombre", ariaDescribedby: "valName", idSmall: "valName", pattern: @"([A-a])\w+")
+                        @Html.CtrlInputRequeridedModel(id: "txtApellido1", type: "text", label: "Primer apellido: ", columnDataName: "Apellido1", ariaDescribedby: "valAp1", idSmall: "valAp1", pattern: @"([A-a])\w+")
+                        @Html.CtrlInputRequeridedModel(id: "txtApellido2", type: "text", label: "Segundo apellido: ", columnDataName: "Apellido2", ariaDescribedby: "valAp2", idSmall: "valAp2", pattern: @"([A-a])\w+")
+                        @Html.CtrlInputOferente(id: "txtCedula", type: "text", label: "Cédula: ", columnDataName: "Cedula", isRequired: true, isReadOnly: true)
+                        @Html.CtrlInputOferente(id: "txtGenero", type: "text", label: "Género: ", columnDataName: "Genero", isReadOnly: true)
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bs-component">
+                        <h2 style="color:transparent">Titulo escondido</h2>
+                        @Html.CtrlInputOferente(id: "txtCorreo", type: "text", label: "Correo: ", columnDataName: "Correo", isRequired: true, isReadOnly: true)
+                        @Html.CtrlInputOferente(id: "txtFecNacimiento", type: "text", label: "Fecha de nacimiento: ", columnDataName: "FecNacimiento", isRequired: true, isReadOnly: true)
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

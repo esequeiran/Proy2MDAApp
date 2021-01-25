@@ -1,0 +1,16 @@
+﻿@using WebApp.Models.Helpers;
+
+<script src="~/Scripts/Views/vListarSolicitudesIngresadasPorCliente.js"></script>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.CtrlTable(viewName: "vListarSolicitudesIngresadasPorCliente", id: "tblSolicitudTrabajoIngresadas", title: "Lista de solicitudes de trabajo ingresadas",
+    columnsTitle: "Explicación del trabajo,Presupuesto,Estado,Fecha del trabajo,Cantidad de ofertas",
+    ColumnsDataName: "ExplicacionTrabajo,Presupuesto,NombreEstado,FechaEventoS,CantidadOfertas",
+    onSelectFunction: "BindFields", colorHeader: "white")
+
+
+
+

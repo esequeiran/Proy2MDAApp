@@ -1,0 +1,34 @@
+﻿@using WebApp.Models.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card border-secondary" style="margin-top: 50px; display: block" id="HorasTrabajadas">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8"><h3>Total de horas</h3></div>
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vCongurarIVA" , id: "btnRegistrar" , label: "Registrar" , buttonType: "info")
+                @*@Html.CtrlButton(viewName: "vCongurarIVA" , id: "btnModificar" , label: "Guardar cambios" , buttonType: "info")*@
+                @Html.CtrlButton(viewName: "vCongurarIVA" , id: "btnCancelar" , label: "Cancelar" , buttonType: "danger")
+            </div>
+        </div>
+    </div>
+    <div class="card-body" id="ConfigurarIVA">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bs-component">
+                    <form id="frmEditar">
+                        @Html.CtrlInputRequeridedModel(id: "txtIva" , type: "number" , label: "Porcentaje IVA: " , columnDataName: "PorcentajeIVA" , ariaDescribedby: "iva" , idSmall: "iva" , pattern: @"([A-Za-z .]{3,})\w+")
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/Views/vConfigurarIVA.js"></script>
+    <script src="~/Scripts/Views/ControlJRAS.js"></script>
+}

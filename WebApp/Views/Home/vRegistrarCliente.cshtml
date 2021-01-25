@@ -1,0 +1,43 @@
+﻿@using WebApp.Models.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_LayoutSimple.cshtml";
+}
+
+<div class="card border-secondary">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8"><h5>Formulario de registro</h5></div>
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vRegistrarCliente" , id: "btnCrear" , label: "Siguiente" , buttonType: "success")
+            </div>
+        </div>
+    </div>
+    <div class="card-body" id="FormularioCliente" style="margin-bottom: 5em">
+        <form autocomplete="off" id="frmCreate">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.CtrlListModel(id: "selectTipoId" , label: "Tipo de identificación: " , columnDataName: "TipoIdentificacion" , ariaDescribeby: "tipoId" , idSmall: "tipoId")
+                    @Html.CtrlInputRequeridedModel(id: "txtId" , type: "text" , label: "Número de identificación: " , columnDataName: "Identificacion" , ariaDescribedby: "valId" , idSmall: "valId" , pattern: @"[0-9]{9,}")
+                    @Html.CtrlInputRequeridedModel(id: "txtNombre" , type: "text" , label: "Nombre: " , columnDataName: "Nombre" , ariaDescribedby: "valName" , idSmall: "valName" , pattern: @"([A-a])\w+")
+                    @Html.CtrlInputRequeridedModel(id: "txtApellidoUno" , type: "text" , label: "Primer apellido: " , columnDataName: "ApellidoUno" , ariaDescribedby: "valAp" , idSmall: "valAp" , pattern: @"([a-z] || [A-Z])\w+")
+                    @Html.CtrlInput(id: "txtApellidoDos" , type: "text" , label: "Segundo apellido: " , columnDataName: "ApellidoDos")
+                    @Html.CtrlInputRequeridedModel(id: "txtFechaNacimiento" , type: "date" , label: "Fecha de nacimiento: " , columnDataName: "FechaNacimiento" , ariaDescribedby: "valDate" , idSmall: "valDate")
+                </div>
+                <div class="col-md-6">
+                    @Html.CtrlListModel(id: "selectPais" , label: "País de nacimiento" , columnDataName: "PaisNacimiento" , ariaDescribeby: "valCountry" , idSmall: "valCountry")
+                    @Html.CtrlListModel(id: "selectGenero" , label: "Género: " , columnDataName: "Genero" , ariaDescribeby: "genre" , idSmall: "genre")
+                    @Html.CtrlInputRequeridedModel(id: "txtTelefono" , type: "phone" , label: "Teléfono: " , columnDataName: "Telefono" , ariaDescribedby: "valTel" , idSmall: "valTel" , pattern: @"[0-9]{8,}")
+                    @Html.CtrlInputRequeridedModel(id: "txtCorreo" , type: "email" , label: "Correo electrónico: " , columnDataName: "Correo" , ariaDescribedby: "valEmail" , idSmall: "valEmail" ,
+                        placeholder: "user@example.com" , pattern: @"[^@\s]+@[^@\s]+")
+                    <div id="botdetect-captcha" class="my-4 d-flex justify-content-center" data-captchastylename="jqueryFormCaptcha" ></div>
+                    @Html.CtrlInputCptchaModelCtrl(id:"userCaptchaInput", type:"text", label: "Escriba los caracteres del cuadro para verificar que no es un robot: ", columnDataName:"", ariaDescribedby:"captcha", idSmall:"captcha", textSmall:"Este campo es requerido.", textSpan:"")
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/Views/vRegistrarCliente.js"></script>
+    <script src="~/Scripts/jquery-captcha.min.js"></script>
+}

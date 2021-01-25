@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{29A3D16E-5C6E-4F95-89F8-15665C4AE551}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CloudinaryDotNet, Version=1.10.0.0, Culture=neutral, PublicKeyToken=c8234dc617ae7841, processorArchitecture=MSIL">
+      <HintPath>..\packages\CloudinaryDotNet.1.10.0\lib\net45\CloudinaryDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\CloudinaryDotNet.1.10.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\CloudinaryDotNet.1.10.0\lib\net45\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Crud\AdministradorCrudFactory.cs" />
+    <Compile Include="Crud\AppMessagesCrudFactory.cs" />
+    <Compile Include="Crud\BitacoraCrudFactory.cs" />
+    <Compile Include="Crud\CancelarMembresiaCrudFactory.cs" />
+    <Compile Include="Crud\ClienteCrudFactory.cs" />
+    <Compile Include="Crud\CrudFactory.cs" />
+    <Compile Include="Crud\DashOferenteCrudFactory.cs" />
+    <Compile Include="Crud\DocumentoCrudFactory.cs" />
+    <Compile Include="Crud\EspecialidadCrudFactory.cs" />
+    <Compile Include="Crud\EstadosUsuarioCrudFactory.cs" />
+    <Compile Include="Crud\FacturaCrudFactory.cs" />
+    <Compile Include="Crud\HorasTrabajadasCrudFactory.cs" />
+    <Compile Include="Crud\IvaCrudFactory.cs" />
+    <Compile Include="Crud\LocalizacionCrudFactory.cs" />
+    <Compile Include="Crud\MonederoCrudFactory.cs" />
+    <Compile Include="Crud\NotificacionCrudFactory.cs" />
+    <Compile Include="Crud\OferenteCrudFactory.cs" />
+    <Compile Include="Crud\OferenteFisicoCrudFactory.cs" />
+    <Compile Include="Crud\OferenteJuridicoCrudFactory.cs" />
+    <Compile Include="Crud\DatosCorreoSmsCrudFactory.cs" />
+    <Compile Include="Crud\LoginTokenCrudFactory.cs" />
+    <Compile Include="Crud\MembresiaCrudFactory.cs" />
+    <Compile Include="Crud\OfertaASolicitudCrudFactory.cs" />
+    <Compile Include="Crud\SolicitudDeTrabajoCrudFactory.cs" />
+    <Compile Include="Crud\TarifaCrudFactory.cs" />
+    <Compile Include="Crud\TerminosCondicionesCrudFactory.cs" />
+    <Compile Include="Crud\TipoDeTrabajoCrudFactory.cs" />
+    <Compile Include="Crud\TrabajadorCrudFactory.cs" />
+    <Compile Include="Crud\TipoTrabajoPorEmpresaCrudFactory.cs" />
+    <Compile Include="Crud\TransaccionCrudFactory.cs" />
+    <Compile Include="Crud\UsuarioCrudFactory.cs" />
+    <Compile Include="Crud\VigenciaMembresiaCrudFactory.cs" />
+    <Compile Include="Dao\SqlDao.cs" />
+    <Compile Include="Dao\SqlOperation.cs" />
+    <Compile Include="Mapper\AdministradorMapper.cs" />
+    <Compile Include="Mapper\BitacoraMapper.cs" />
+    <Compile Include="Mapper\CancelarMembresiaMapper.cs" />
+    <Compile Include="Mapper\ClienteMapper.cs" />
+    <Compile Include="Mapper\DashOferenteMapper.cs" />
+    <Compile Include="Mapper\CalendarioMapper.cs" />
+    <Compile Include="Mapper\DocumentoMapper.cs" />
+    <Compile Include="Mapper\AppMessagesMapper.cs" />
+    <Compile Include="Mapper\DatosCorreoSmsMapper.cs" />
+    <Compile Include="Mapper\EntityMapper.cs" />
+    <Compile Include="Mapper\EspecialidadMapper.cs" />
+    <Compile Include="Mapper\EstadosUsuarioMapper.cs" />
+    <Compile Include="Mapper\FacturaMapper.cs" />
+    <Compile Include="Mapper\HorasTrabajadasMapper.cs" />
+    <Compile Include="Mapper\IObjectMapper.cs" />
+    <Compile Include="Mapper\ISqlStatements.cs" />
+    <Compile Include="Mapper\IvaMapper.cs" />
+    <Compile Include="Mapper\LocalizacionMapper.cs" />
+    <Compile Include="Mapper\NotificacionMapper.cs" />
+    <Compile Include="Mapper\MonederoMapper.cs" />
+    <Compile Include="Mapper\OferenteFisicoMapper.cs" />
+    <Compile Include="Mapper\OferenteJuridicoMapper.cs" />
+    <Compile Include="Mapper\OferenteMapper.cs" />
+    <Compile Include="Mapper\LoginTokenMapper.cs" />
+    <Compile Include="Mapper\MembresiaMapper.cs" />
+    <Compile Include="Mapper\OfertaASolicitudDeTrabajoMapper.cs" />
+    <Compile Include="Mapper\SolicitudDeTrabajoMapper.cs" />
+    <Compile Include="Mapper\SolicitudRegistroMapper.cs" />
+    <Compile Include="Mapper\TarifaMapper.cs" />
+    <Compile Include="Mapper\TerminosCondicionesMapper.cs" />
+    <Compile Include="Mapper\TipoDeTrabajoMapper.cs" />
+    <Compile Include="Mapper\TrabajadorMapper.cs" />
+    <Compile Include="Mapper\TipoTrabajoPorEmpresaMapper.cs" />
+    <Compile Include="Mapper\TransaccionMapper.cs" />
+    <Compile Include="Mapper\UsuarioMapper.cs" />
+    <Compile Include="Mapper\VigenciaMembresiaMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities-POJO\Entities-POJO.csproj">
+      <Project>{C23E2337-B4A3-4948-A880-350460B43D8F}</Project>
+      <Name>Entities-POJO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,31 @@
+﻿@using WebApp.Models.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //ViewBag.Title = "Registrar horas trabajadas";
+}
+
+
+    <div class="card border-secondary" style="margin-top: 50px; display: block" id="listaLocalizaciones">
+        <div class="card-header">
+            <div class="row pull-right">
+                <div class="col-md-10"></div>
+                <div class="col-md-2">
+                    @Html.CtrlButton(viewName: "vRegistrarHorasTrabajadas" , id: "notificar" , buttonType: "success" , label: "Enviar")
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+@Html.CtrlTblModel(viewName: "vRegistrarHorasTrabajadas" , id: "tblTiposTrabajo" , title: "Tipos de trabajo" , columnsTitle: "Tipo de trabajo, Total de horas" ,
+     ColumnsDataName: "Nombre_TipoTrabajo,HorasTrabajadas" , colorHeader: "red")
+
+@Html.CtrlModalInputModel(id: "txtHoras" , type: "number" , labelInput: "Horas trabajadas: " , columnDataName: "HorasTrabajadas" , idSmall: "hrs" ,
+    title: "Registro de horas" , idModal: "save" , labelBtn: "Registrar" , buttonType: "success" , idInput: "txtHoras" , ariadescribed: "hrs" , idButton: "btnGuardar")
+
+@*@Html.CtrlModalModel(id: "notificar" , title: "Registro completo." , idParrafo: "1" , contenidoParrafo: "Se han registrado todas las horas de trabajo correspondientes." , viewName: "" , idModal: "ready" , label: "Aceptar")*@
+
+@section Scripts {
+    <script src="~/Scripts/Views/vRegistrarHorasTrabajadas.js"></script>
+}

@@ -1,0 +1,72 @@
+﻿@using WebApp.Models.Helpers;
+
+
+@{
+    ViewBag.Title = "Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/Content/Swal/sweetalert2-bootstrap-4.min.css">
+}
+
+@{
+    //Nombre de las columnas en el mismo orden del javascript:
+    var lstColumnas = new List<string>();
+    lstColumnas.Add("Rol");
+    lstColumnas.Add("Nombre");
+    lstColumnas.Add("Primer apellido");
+    lstColumnas.Add("Segundo apellido");
+    lstColumnas.Add("Identificación");
+    lstColumnas.Add("Tipo de identificación");
+    lstColumnas.Add("Correo electrónico");
+    lstColumnas.Add("Fecha de nacimiento");
+    lstColumnas.Add("País de nacimiento");
+    lstColumnas.Add("Género");
+    lstColumnas.Add("Estado");
+}
+
+
+
+<div class="card border-secondary mb-6">
+    <div class="card-header">Lista de Usuarios</div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="tblUsuario" class="table table-striped" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th class="text-center text-nowrap">Ver perfil</th>
+                        @foreach (var i in lstColumnas)
+                        {
+                            <th class="text-center text-nowrap">@i</th>
+                        }
+                    </tr>
+                </thead>
+                <!-- Este segundo <thead> es para la barra de búsqueda por columnas -->
+                <thead id="theadBusqueda" class="d-none">
+                    <tr id="trbusqueda">
+                        <th class="descartar-celda"></th>
+                        @foreach (var i in lstColumnas)
+                        {
+                            <th></th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var totalColumnas = lstColumnas.Count;
+                    }
+                    <tr>
+                        <td colspan="@totalColumnas" class="text-dark h6 text-center font-weight-normal">Cargando...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script src="~/Scripts/Swal/sweetalert2.min.js"></script>
+    <script src="~/Scripts/Views/vUsuario.js"></script>
+}

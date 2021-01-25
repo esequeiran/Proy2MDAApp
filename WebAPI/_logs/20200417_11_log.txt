@@ -1,0 +1,18 @@
+
+Log Entry : 11:00:10 p. m. viernes, 17 de abril de 2020
+  :
+  :7 - Message not found!:
+Message not found!
+   en CoreAPI.LoginTokenManager.RetrieveById(LoginToken pCredenciales) en C:\Users\Evese\source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\CoreAPI\LoginTokenManager.cs:línea 30
+
+
+-------------------------------
+
+Log Entry : 11:16:55 p. m. viernes, 17 de abril de 2020
+  :
+  :7 - Usuario o contraseña no válidos:
+Usuario o contraseña no válidos
+   en CoreAPI.LoginTokenManager.RetrieveById(LoginToken pCredenciales) en C:\Users\Evese\source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\CoreAPI\LoginTokenManager.cs:línea 30
+
+
+-------------------------------

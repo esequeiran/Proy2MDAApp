@@ -1,0 +1,10 @@
+﻿
+body {
+    min-height: 28.9rem;
+}
+
+@media (max-width: 575.98px) {
+    body {
+        min-height: 35.5rem;
+    }
+}

@@ -1,0 +1,579 @@
+﻿@using WebApp.Models.Helpers;
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="@ViewBag.Title">
+    <meta name="author" content="Aureosoft">
+    <title>@ViewBag.Title - Maridos De Alquiler (MDA)</title>
+    @{ ViewBag.Title = "";
+    }
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/dataTables")
+    @Styles.Render("~/Content/theme")
+    @Styles.Render("~/Content/custom")
+    @RenderSection("Styles" , required: false)
+    <link rel="shortcut icon" type="image/png" href="@Url.Content("~/Images/")favicon.png" />
+
+</head>
+
+<body class="sb-nav-fixed">
+
+    @Scripts.Render("~/bundles/bootstrap")
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary  text-light">
+        <a class="navbar-brand mr-0 mr-md-2 text-center" href="@Url.Action("Index", "Home")" aria-label="@ViewBag.Title">
+            <img style="width:40px;" src="@Url.Content("~/Images/")logo.png" alt="logo" class="mr-2"><strong>MDA</strong>
+        </a>
+
+        <button id="sidebarToggle" class="btn btn-link btn-sm order-1 order-lg-0" data-toggle="tooltip"
+                data-tooltip-color="light" data-placement="right" title="Minimizar barra lateral">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
+
+
+            <li id="idliEscanearCodigo" class="nav-item mx-auto mx-sm-auto mx-md-2 mx-lg-2 mx-xl-2">
+                <a class="nav-link py-0 py-sm-2" href=@Url.Action("vEscanearCodigoQR", "Home") title="Escanear código QR" data-toggle="tooltip" data-tooltip-color="dark"
+                   data-placement="bottom">
+                    <i class="fas fa-qrcode" style="font-size: 22px"></i>
+                    <span id="escanearCodigo" class="badge badge-pill d-none align-top align-text-top badge-warning d-none"></span>
+                </a>
+            </li>            
+
+            <li id="idliPendientesPago" class="nav-item mx-auto mx-sm-auto mx-md-2 mx-lg-2 mx-xl-2">
+                <a class="nav-link py-0 py-sm-2" href=@Url.Action("vListarPagosPendientes", "Home") title="Pagos pendientes" data-toggle="tooltip" data-tooltip-color="dark"
+                   data-placement="bottom">
+                    <i class="fas fa-comments-dollar" style="font-size: 22px"></i>
+                    <span id="cantidadPendiente" class="badge badge-pill d-none align-top align-text-top badge-warning d-none"></span>
+                </a>
+            </li>
+
+            <li id="idliSolicitudRegistro" class="nav-item mx-auto mx-sm-auto mx-md-2 mx-lg-2 mx-xl-2">
+                <a class="nav-link py-0 py-sm-2" href=@Url.Action("vSolicitudRegistro", "Home") title="Solicitudes" data-toggle="tooltip" data-tooltip-color="dark"
+                   data-placement="bottom">
+                    <i class="d-inline fas fa-tools"></i>
+                    @*<span id="notificaciones" class="badge badge-pill d-inline align-top align-text-top badge-warning"></span>*@
+
+                </a>
+
+
+            </li>
+            @*<li class="nav-item mx-auto mx-sm-auto mx-md-2 mx-lg-2 mx-xl-2">
+            <a class="nav-link py-0 py-sm-2" href="#" title="Notificaciones" data-toggle="tooltip" data-tooltip-color="dark"
+               data-placement="bottom">
+                <i class="d-inline far fa-envelope"></i>
+                <span class="badge badge-pill d-inline align-top align-text-top badge-danger">7</span>
+            </a>
+        </li>*@
+            <li class="nav-item dropdown mx-auto mx-sm-auto mr-md-0 mr-lg-0 mr-xl-0 ml-md-2 ml-lg-2 ml-xl-2">
+                <a class="nav-link py-0 py-sm-2 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user fa-fw d-inline"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-header noti-title">
+                        <h6 class="text-overflow m-0">Informaci&oacute;n</h6>
+                    </div>
+                    <a class="dropdown-item" href="#">
+
+                        <div class="d-flex flex-nowrap">
+                            <div class="user-pic">
+                                <img class="img-responsive img-rounded" src="@Url.Content("~/Images/")user.png" alt=" ">
+                            </div>
+                            <div class="user-info">
+                                <span class="user-name">
+                                    <strong id="idStrongNombre"></strong>
+                                </span>
+                                <span id="idSpanRol" class="user-role"></span>
+                                <span class="user-status">
+                                    <i class="fa fa-circle"></i>
+                                    <span>Conectado</span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </a>
+
+                    <div class="dropdown-divider"></div>
+
+                    <a id="idAModificarOferente" href="@Url.Action("vPerfilOferente", "Home")" class="dropdown-item">
+                        <i class="fas fa-id-badge"></i>&nbsp;<span>Mi perfil</span>
+                    </a>
+
+                    <a id="idAModificarAdministrador" href="@Url.Action("vModificarAdministrador", "Home")" class="dropdown-item">
+                        <i class="fas fa-id-badge"></i>&nbsp;<span>Mi perfil</span>
+                    </a>
+                    
+                    <a id="idAModificarCliente" href="@Url.Action("vModificarCliente", "Home")" class="dropdown-item">
+                        <i class="fas fa-id-badge"></i>&nbsp;<span>Mi perfil</span>
+                    </a>
+
+                    <a href="@Url.Action("vModificarContrasenna", "Home")" class="dropdown-item">
+                        <i class="fas fa-user-cog"></i>&nbsp;<span>Modificar contraseña</span>
+                    </a>
+                    <a href="@Url.Action("vMonedero", "Home")" class="dropdown-item">
+                        <i class="fas fa-wallet"></i>&nbsp;<span>Monedero</span>
+                    </a>
+                    @*<a href="#!" class="dropdown-item">
+                    <i class="fas fa-calendar-alt"></i>&nbsp;<span>Actividades</span>
+                </a>*@
+                    @*<a href="#!" class="dropdown-item">
+                    <i class="fas fa-life-ring"></i>&nbsp;<span>Soporte</span>
+                </a>*@
+                    <div class="dropdown-divider"></div>
+                    <div style="color: black; ">
+                        @Html.CtrlAModel(viewName: "Autenticacion", id: "aCerrarSesion", label: "<i class='fa fa-power-off'>" +
+                       "</i>&nbsp; <span> Cerrar sesi&oacute;n</span>", onClickFunction: "LogOut();")
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion bg-primary text-light" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+
+                    <div class="nav mb-3">
+                        <div id="inicioNav" class="sb-sidenav-menu-heading">Inicio</div>
+                        <div id="idDashAdmin">
+                            <a href="@Url.Action("vDashboardAdmin", "Home")" class="nav-link active">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>Dashboard
+                            </a>
+                        </div>
+                        <div id="idDashOferente">
+                            <a href="@Url.Action("vDashboardOferente", "Home")" class="nav-link active">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>Dashboard
+                            </a>
+                        </div>
+
+
+                        <div class="sb-sidenav-menu-heading">Principal</div>
+
+                        @*Agregar configuraciones*@
+                        <a class="nav-link collapsed" href="javascript:void 0;" data-toggle="collapse"
+                           data-target="#collapseServicios" aria-expanded="false" aria-controls="collapseServicios">
+
+                            <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
+                            Configuración
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseServicios" aria-labelledby="headingOne"
+                             data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+           
+                                @Html.ActionLink("Localizaciones", "vListarLocalizaciones", "Home", new
+                                {
+                                    @class = "nav-link"
+                                })        
+                            </nav>
+                        </div>
+                        <div id="seccionServicioOferente">
+                            @*Sección servicios oferente*@
+                            <a class="nav-link collapsed" href="javascript:void 0;" data-toggle="collapse"
+                               data-target="#collapseServiciosOferente" aria-expanded="false" aria-controls="collapseServiciosOferente">
+
+                                <div class="sb-nav-link-icon"><i class="fas fa-object-group"></i></div>
+                                Servicios
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseServiciosOferente" aria-labelledby="headingOne"
+                                 data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    @*<a class="nav-link" href="#">Especialidades</a>*@
+                                    @*<a class="nav-link" href="#">Tipos de trabajo</a>*@
+
+                                    @Html.ActionLink("Ofertar solicitud" , "vListarSolicitudesTrabajoIngresadasPorOferente" , "Home" , new {
+                                        @class = "nav-link"
+                                   })
+
+
+                                    @Html.ActionLink("Trabajo y costo por hora" , "vTipoTrabajoPorEmpresa" , "Home" , new {
+                                        @class = "nav-link"
+                                    })
+
+                                </nav>
+                            </div>
+                                <a href="@Url.Action("vListarSolicitudesTrabajoPendientesAprobadasParaOferente" , "Home")" class="nav-link active">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>Trabajos pendientes
+                                </a>
+                                <a href="@Url.Action("vListarSolicitudesPendienteHoras" , "Home")" class="nav-link active">
+                                    <div class="sb-nav-link-icon"><i class="far fa-clock"></i></div>Registrar horas
+                                </a>
+                            @*@Html.ActionLink("Trabajos pendientes" , "vListarSolicitudesTrabajoPendientesAprobadasParaOferente" , "Home" , new {
+                                      @class = "nav-link"
+                                 })*@
+
+                            @*@Html.ActionLink("Registrar horas" , "vListarSolicitudesPendienteHoras" , "Home" , new {
+                                       @class = "nav-link"
+                                   })*@
+
+                        </div>
+
+                        <div id="seccionServicioCliente">
+                            @*Servicios para el cliente*@
+                            @*<a class="nav-link collapsed" href="javascript:void 0;" data-toggle="collapse"
+                               data-target="#collapseServiciosCliente" aria-expanded="false" aria-controls="collapseServiciosCliente">
+
+                                <div class="sb-nav-link-icon"><i class="fas fa-object-group"></i></div>
+                                Servicios
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseServiciosCliente" aria-labelledby="headingOne"
+                                 data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">*@
+
+                                    @*@Html.ActionLink("Solicitud de trabajo" , "vRegistrarSolicitudDeTrabajo" , "Home" , new {
+                                       @class = "nav-link"
+                                   })*@
+                                    @*@@*Html.ActionLink("Ver ofertas" , "vListarSolicitudesIngresadasPorCliente" , "Home" , new {
+                    @class = "nav-link"
+                })*@
+
+                                    @*@Html.ActionLink("Pendientes de evaluación" , "vRegistrarEvaluacionSolicitudTrabajo" , "Home" , new {
+                @class = "nav-link"*@
+                                    @*})*@
+
+                                @*</nav>*@
+                            @*</div>*@
+                                <a href="@Url.Action("vRegistrarSolicitudDeTrabajo" , "Home")" class="nav-link active">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-calendar-plus"></i></div>Crear solicitud de trabajo
+                                </a>
+                                <a href="@Url.Action("vListarSolicitudesIngresadasPorCliente" , "Home")" class="nav-link active">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-pager"></i></div>Ver ofertas
+                                </a>
+
+                                <a href="@Url.Action("vRegistrarEvaluacionSolicitudTrabajo" , "Home")" class="nav-link active">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-star-half-alt"></i></div>Evaluar trabajos
+                                </a>
+
+</div>
+
+                            <div id="idMembresiasOferente">
+                                <a class="nav-link collapsed" href="javascript:void 0;" data-toggle="collapse"
+                                   data-target="#collapseMembreciasPropias" aria-expanded="false" aria-controls="collapseMembreciasPropias">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-ticket-alt"></i></div>Membres&iacute;as
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="collapseMembreciasPropias" aria-labelledby="headingOne"
+                                     data-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        @*<a class="nav-link" href="#">Especialidades</a>*@
+                                        @*<a class="nav-link" href="#">Tipos de trabajo</a>*@
+                                        @Html.ActionLink("Listar mis membresías", "vListarMembresiasOferente", "Home", new
+                                        {
+                                            @class = "nav-link"
+                                        })
+
+                                    </nav>
+                                </div>
+
+                            </div>
+                            <div id="iddivReportesGraficos">
+                                <div class="sb-sidenav-menu-heading">Reportes</div>
+                                <div >
+                                    <a href="@Url.Action("vBitacoraAcciones", "Home")" class="nav-link active">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-poll-h"></i></div>Bitácora
+                                    </a>
+                                </div>
+                                <div >
+                                    <a href="@Url.Action("vListarTransacciones", "Home")" class="nav-link active">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-poll"></i></div>Transacciones
+                                    </a>
+                                </div>
+
+                                @*<a class="nav-link collapsed" href="javascript:void 0;" data-toggle="collapse"
+           data-target="#collapseReportes" aria-expanded="false" aria-controls="collapseReportes">
+            <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>
+            Reportes
+            <div class="sb-sidenav-collapse-arrow">
+                <i class="fas fa-angle-down"></i>
+            </div>
+        </a>
+
+        <div class="collapse" id="collapseReportes" aria-labelledby="headingOne"
+             data-parent="#sidenavAccordion">
+            <nav class="sb-sidenav-menu-nested nav">
+                @Html.ActionLink("Bitácora", "vBitacoraAcciones", "Home", new
+                {
+                    @class = "nav-link"
+                }) @Html.ActionLink("Transacciones", "vListarTransacciones", "Home", new
+                {
+                    @class = "nav-link"
+                })
+            </nav>
+        </div>*@
+                                @*<a class="nav-link collapsed" href="javascript:void 0;" data-toggle="collapse"
+           data-target="#collapseGraficos" aria-expanded="false" aria-controls="collapseGraficos">
+            <div class="sb-nav-link-icon"><i class="fas fa-chart-pie"></i></div>
+            Gr&aacute;ficos
+            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+        </a>*@
+                                @*<div class="collapse" id="collapseGraficos" aria-labelledby="headingOne"
+             data-parent="#sidenavAccordion">
+            <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="#">Gr&aacute;fico 1</a>
+            </nav>
+        </div>*@
+                            </div>
+                            @*<div id="iddivSeguridad">
+                                <div class="sb-sidenav-menu-heading">Seguridad</div>
+                                <a class="nav-link collapsed" href="javascript:void 0;" data-toggle="collapse"
+                                   data-target="#collapsePermisos" aria-expanded="false" aria-controls="collapsePermisos">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-user-secret"></i></div>
+                                    Permisos
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="collapsePermisos" aria-labelledby="headingOne"
+                                     data-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="#">Permisos de usuarios</a>
+                                    </nav>
+                                </div>
+                            </div>*@
+
+                            <div id="idDivMantenimiento">
+                                <div class="sb-sidenav-menu-heading">Mantenimiento</div>
+
+
+                                <a class="nav-link collapsed" href="javascript:void 0;" data-toggle="collapse"
+                                   data-target="#collapseMembrecias" aria-expanded="false" aria-controls="collapseMembrecias">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
+                                    Membres&iacute;as
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="collapseMembrecias" aria-labelledby="headingOne"
+                                     data-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        @*<a class="nav-link" href="#">Agregar membrec&iacute;a</a>*@
+                                        @Html.ActionLink("Registrar membresía", "vRegistrarMembresia", "Home", new
+                                        {
+                                            @class = "nav-link"
+                                        })
+                                        @Html.ActionLink("Listar membresías", "vListarMembresias", "Home", new
+                                        {
+                                            @class = "nav-link"
+                                        })
+                                        @*@Html.ActionLink("Registrar y enviar correo", "vRegistrarMembresiaYEnviarCorreo", "Home", new { @class = "nav-link" })*@
+                                        @*@Html.ActionLink("Administrar tarifas", "vAdministrarTarifas", "Home", new { @class = "nav-link" })*@
+
+                                    </nav>
+                                </div>
+
+
+
+                                <a class="nav-link collapsed" href="javascript:void 0;" data-toggle="collapse"
+                                   data-target="#collapseParametros" aria-expanded="false" aria-controls="collapseMembrecias">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
+                                    Configuraciones Generales
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="collapseParametros" aria-labelledby="headingOne"
+                                     data-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        @Html.ActionLink("Tarifas de cobro", "vAdministrarTarifas", "Home", new
+                                        {
+                                            @class = "nav-link"
+                                        })
+                                        @Html.ActionLink("IVA", "vConfigurarIVA", "Home", new
+                                        {
+                                            @class = "nav-link"
+                                        })
+                                    </nav>
+                                </div>
+
+                                <a class="nav-link collapsed" href="javascript:void 0;" data-toggle="collapse"
+                                   data-target="#collapseCatalogos" aria-expanded="false" aria-controls="collapseCatalogos">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
+                                    Servicios
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="collapseCatalogos" aria-labelledby="headingOne"
+                                     data-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        @Html.ActionLink("Especialidades", "vEspecialidad", "Home", new
+                                        {
+                                            @class = "nav-link"
+                                        })
+                                        @Html.ActionLink("Tipos de trabajo", "vTipoTrabajo", "Home", new
+                                        {
+                                            @class = "nav-link"
+                                        })
+                                    </nav>
+                                </div>
+
+                                <a class="nav-link collapsed" href="javascript:void 0;" data-toggle="collapse"
+                                   data-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-user-cog"></i></div>
+                                    Usuarios
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="collapseUsuarios" aria-labelledby="headingOne"
+                                     data-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        @Html.ActionLink("Listar usuarios", "vUsuario", "Home", new
+                                        {
+                                            @class = "nav-link"
+                                        })
+                                        @Html.ActionLink("Registrar administrador", "vRegistrarAdministrador", "Home", new
+                                        {
+                                            @class = "nav-link"
+                                        })
+                                        @*<a class="nav-link" href="#">Bloquear usuario</a>
+                            <a class="nav-link" href="#">Eliminar usuario</a>
+                            <a class="nav-link" href="#">Suspender usuario</a>*@
+                                    </nav>
+                                </div>
+                            </div>
+
+                   
+
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer bg-primary text-light">
+                    <div class="small font-weight-normal text-muted">Conectado como:</div>
+                    <div id="divConectadoComo" class="small font-weight-lighter text-white-50"></div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <h1 class="my-4">@ViewBag.Title</h1>
+
+                    <!-- <CUERPO_DEL_SITIO> -->
+
+                    <div class="row mb-2">
+                        <div class="col-10 offset-1">
+                            <div id="alert_container" class="alert alert-success alert-dismissable rounded-pill shadow-sm text-center" style="display: none">
+                                <button type="button" class="close" onclick="$('#alert_container').hide()">&times;</button>
+                                <span id="alert_message"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            @RenderBody()
+                        </div>
+                    </div>
+
+                    <!-- </CUERPO_DEL_SITIO> -->
+
+
+
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto border border-bottom-0 border-left-0 border-right-0 border-secundary">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">&copy; @DateTime.Now.Year - <span>MDA</span></div>
+                        <div class="text-muted">
+                            Hecho con <span class="text-danger"><i class="fas fa-heart"></i></span>
+                            por <a href="javascript:void 0;">Aureosoft</a>
+                        </div>
+                        <div>
+                            @*<a href="javascript:void 0;">Pol&iacute;tica de privacidad</a>
+                                &middot;*@
+                            <a href="javascript:void 0;">T&eacute;rminos &amp; Condiciones</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/malihuScrollbar")
+    @Scripts.Render("~/bundles/dataTables")
+    @Scripts.Render("~/bundles/chartjs")
+    @Scripts.Render("~/bundles/theme")
+    @Scripts.Render("~/bundles/controlActions")
+    @RenderSection("scripts" , required: false)
+    <script src="~/Scripts/Views/Autenticacion.js"></script>
+
+
+    <script>
+        $('#aCerrarSesion').removeClass('nav-link');
+        $('#aCerrarSesion').addClass('dropdown-item');
+        $('#idStrongNombre').text(sessionStorage.getItem('Nombre'));
+        $('#idSpanRol').text(sessionStorage.getItem('Nombreroles'));
+        $('#divConectadoComo').text(sessionStorage.getItem('Nombre'));
+        var arregloIdRol = [];
+        arregloIdRol = sessionStorage.getItem('Idroles').split(',');
+
+        function checkRol(rol) {
+            return rol == 1;
+        }
+        //sino es administrador osea para cualquiera
+        if (arregloIdRol.filter(checkRol).length == 0) {
+            $('#idliSolicitudRegistro').hide()
+            //$('#iddivSeguridad').hide();
+            $('#idDivMantenimiento').hide();
+            $('#iddivReportesGraficos').hide();
+            
+        }
+
+        //Administrador
+        if (arregloIdRol.filter(checkRol).length > 0) {         
+            $('#idliPendientesPago').hide();
+            $('#seccionServicioCliente').hide();
+            $('#seccionServicioOferente').hide();
+            $('#idDashOferente').hide();
+            $('#idAModificarOferente').hide();
+            $('#idliEscanearCodigo').hide();
+            //$('#iddivReportesGraficos').hide();
+           $('#idAModificarCliente').hide();
+           $('#idMembresiasOferente').hide();
+        }
+
+
+        function checkRolCliente(rol) {
+            return rol == 4;
+        }
+
+        //Oferente
+        if (arregloIdRol.filter(checkRolCliente).length == 0 && arregloIdRol.filter(checkRol).length == 0 ) {
+            $('#idliSolicitudRegistro').hide()
+            //$('#iddivSeguridad').hide();
+            $('#idDivMantenimiento').hide();
+            $('#iddivReportesGraficos').hide();
+            $('#seccionServicioCliente').hide();
+            $('#idliPendientesPago').hide();
+            $('#idDashAdmin').hide();
+            $('#idAModificarAdministrador').hide();
+            $('#idliEscanearCodigo').hide();
+           $('#idAModificarCliente').hide();
+        }
+        //cliente
+        if (arregloIdRol.filter(checkRolCliente).length >0) {
+            $('#idliSolicitudRegistro').hide()
+            //$('#iddivSeguridad').hide();
+            $('#idDivMantenimiento').hide();
+            $('#iddivReportesGraficos').hide();
+            $('#seccionServicioOferente').hide();
+            $('#divMembresiasOferente').hide();
+            $('#idMembresiasOferente').hide();
+            $('#idDashAdmin').hide();
+            $('#idDashOferente').hide();
+            $('#idAModificarOferente').hide();
+            $('#idAModificarAdministrador').hide();
+            $('#inicioNav').hide();
+           
+        }
+            
+
+    </script>
+
+    <script src="~/Scripts/Views/mostrarCantidadPagosPendientes.js"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,16 @@
+﻿@using WebApp.Models.Helpers;
+
+<script src="~/Scripts/Views/vBitacoraAcciones.js"></script>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.CtrlTable(viewName: "vBitacoraAcciones", id: "tblBitacoraAcciones", title: "Bitácora de acciones",
+    columnsTitle: "Nombre,Descripción,Fecha",
+    ColumnsDataName: "Nombre,DescripcionAccion,Fecha",
+    onSelectFunction: "BindFields", colorHeader: "white")
+
+
+
+

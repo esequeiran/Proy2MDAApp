@@ -1,0 +1,48 @@
+﻿@using WebApp.Models.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card border-secondary" style="margin-top: 50px; display: block">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-6"><h5>Dashboard</h5></div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <div class="row">
+
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="margin-bottom: 5em">
+            <div>
+                <canvas id="ingresos" style='width: 100%; height: 19em;'></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            @Html.CtrlTable(viewName: "vDashboardAdmin" , id: "tblSolicitudesRegistro" , title: "Solicitudes de registro recibidas recientemente" , columnsTitle: "Identificación, Nombre oferente, Nombre comercial" ,
+    onSelectFunction: "" , ColumnsDataName: "Cedula,NombreComercial,Correo" , colorHeader: "red")
+        </div>
+        <div class="col-md-6">
+            @Html.CtrlTable(viewName: "vDashboardAdmin" , id: "tblOferentesIngresos" , title: "Oferentes que más ingresos han generado" , columnsTitle: "Identificación, Nombre comercial, Total Ingresos" ,
+    onSelectFunction: "" , ColumnsDataName: "Cedula,NombreComercial,TotalIngresosGenerados" , colorHeader: "red")
+        </div>
+    </div>
+</div>
+
+@Html.CtrlModalModel(id: "verSolicitudes" , title: "Confirmación" , idParrafo: "1" , contenidoParrafo: "¿Desea ver todas las solicitudes de registro recientes?" , viewName: "" , idModal: "solicitud" , label: "Aceptar")
+@Html.CtrlModalModel(id: "verOferente" , title: "Confirmación" , idParrafo: "1" , contenidoParrafo: "¿Desea ver el perfil del oferente seleccionado?" , viewName: "" , idModal: "oferente" , label: "Aceptar")
+
+@section Scripts {
+    <script src="~/Scripts/Views/vDashboardAdmin.js"></script>
+}

@@ -1,0 +1,9 @@
+
+Log Entry : 09:25:22 p. m. sábado, 25 de abril de 2020
+  :
+  :18 - No se puede realizar más de una oferta a una solicitud de trabajo:
+No se puede realizar más de una oferta a una solicitud de trabajo
+   en CoreAPI.OfertaASolicitudDeTrabajoManager.Create(OfertaASolicitudDeTrabajo oferta) en C:\Users\Evese\Source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\CoreAPI\OfertaASolicitudDeTrabajoManager.cs:línea 28
+
+
+-------------------------------

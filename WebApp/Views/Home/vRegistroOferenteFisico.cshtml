@@ -1,0 +1,93 @@
+﻿@using WebApp.Models.Helpers;
+<script src="~/Scripts/Views/vRegistroOferenteFisico.js"></script>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*@Html.CtrlTable(viewName: "vRegistroOferenteFisico", id: "tblOFisico", title: "Registro Oferente Fisico",
+    columnsTitle: "Nombre,Primer Apellido,Segundo Apellido,Cedula,Tipo Cedula,Genero,Correo electronico,Telefono,Pais de Nacimiento,Fec de Nacimiento",
+    ColumnsDataName: "Nombre,Apellido1,Apellido2,Cedula,TipoCedula,Genero,Correo,Telefono,PaisNacimiento,FecNacimiento",
+    onSelectFunction: "BindFields", colorHeader: "red")*@
+
+
+<div class="card border-secondary" style="margin-top: 50px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Registrar Oferente </div>
+            <div class="col-md-4">
+                @*@Html.CtrlButton(viewName: "vRegistroOferenteFisico", id: "btnUpdate", label: "Save changes", onClickFunction: "Update", buttonType: "info")
+                    @Html.CtrlButton(viewName: "vRegistroOferenteFisico", id: "btnDelete", label: "Delete", onClickFunction: "Delete", buttonType: "danger")*@
+                @Html.CtrlButton(viewName: "vRegistroOferenteFisico", id: "btnCreate", label: "Next", onClickFunction: "Create", buttonType: "success")
+
+            </div>
+        </div>
+    </div>
+    <div class="card-body" id="FormularioUsuario">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bs-component">
+                    <form id="frmEdition">
+                        <h1>Datos del representante legal</h1>
+                        @Html.CtrlInput(id: "txtNombre", type: "text", label: "Nombre", columnDataName: "Nombre")
+                        @Html.CtrlInput(id: "txtApellido1", type: "text", label: "Primer Apellido", columnDataName: "Apellido1")
+                        @Html.CtrlInput(id: "txtApellido2", type: "text", label: "Segundo Apellido", columnDataName: "Apellido2")
+                        @Html.CtrlInput(id: "txtCedula", type: "text", label: "Cedula", columnDataName: "Cedula")
+                        @Html.CtrlInput(id: "txtTipoCedula", type: "text", label: "Tipo de Cedula", columnDataName: "TipoCedula")
+                        @Html.CtrlInput(id: "txtGenero", type: "text", label: "Genero", columnDataName: "Genero")
+                        @Html.CtrlInput(id: "txtCorreo", type: "text", label: "Correo", columnDataName: "Correo")
+                        @Html.CtrlInput(id: "txtTelefono", type: "text", label: "Telefono", columnDataName: "Telefono")
+                        @Html.CtrlInput(id: "txtPaisNacimiento", type: "text", label: "Pais de Nacimiento", columnDataName: "PaisNacimiento")
+                        @Html.CtrlInput(id: "txtFecNacimiento", type: "date", label: "Fecha de Nacimiento", columnDataName: "FecNacimiento")
+                        @* @Html.CtrlDropDown(id: "drpGender", label: "Gender", listId: "LST_GENERO")*@
+                        <h1>Datos de la empresa</h1>
+                        @Html.CtrlInput(id: "txtNombreComercial", type: "text", label: "Nombre Comercial", columnDataName: "NombreComercial")
+                        @Html.CtrlInput(id: "txtRazonSocial", type: "text", label: "Razon Social", columnDataName: "RazonSocial")
+                        @Html.CtrlInput(id: "txtCedulaJuridica", type: "text", label: "Cedula Juridica", columnDataName: "CedulaJuridica")
+                        @Html.CtrlInput(id: "txtFecCreacion", type: "date", label: "Fecha de Creacion", columnDataName: "FecCreacion")
+                        @Html.CtrlTextArea(id: "txtDescripcion", label: "Descripcion", columnDataName: "Descripcion")
+                        @* @Html.CtrlDropDown(id: "drpGender", label: "Gender", listId: "LST_GENERO")*@
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+</div>
+
+<div class="card border-secondary" style="margin-top: 50px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Registrar Oferente Fisico</div>
+            <div class="col-md-4">
+                @*@Html.CtrlButton(viewName: "vRegistroOferenteFisico", id: "btnUpdate", label: "Save changes", onClickFunction: "Update", buttonType: "info")
+                    @Html.CtrlButton(viewName: "vRegistroOferenteFisico", id: "btnDelete", label: "Delete", onClickFunction: "Delete", buttonType: "danger")*@
+                @Html.CtrlButton(viewName: "vRegistroOferenteFisico", id: "btnCreate", label: "Next", onClickFunction: "Create", buttonType: "success")
+
+            </div>
+        </div>
+    </div>
+    
+
+
+    <div class="card-body" id="FormularioLocalizacion">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bs-component">
+                    <form id="frmEdition">
+                        <h1>Datos de la localizacion de la empresa</h1>
+                        @Html.CtrlInput(id: "txtNombreLocalizacion", type: "text", label: "Nombre de la localizacion", columnDataName: "NombreLocalizacion")
+                        @Html.CtrlInput(id: "txtLatitud", type: "text", label: "Latitud", columnDataName: "Latitud")
+                        @Html.CtrlInput(id: "txtLongitud", type: "text", label: "Longitud", columnDataName: "Longitud")
+                        @Html.CtrlInput(id: "txtProvincia", type: "text", label: "Provincia", columnDataName: "Provincia")
+                        @Html.CtrlInput(id: "txtCanton", type: "text", label: "Canton", columnDataName: "Canton")
+                        @Html.CtrlInput(id: "txtDistrito", type: "text", label: "Distrito", columnDataName: "Distrito")
+                        @Html.CtrlInput(id: "txtOtrasSennas", type: "text", label: "Otras Señas", columnDataName: "OtrasSennas")
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

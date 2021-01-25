@@ -1,0 +1,40 @@
+﻿@using WebApp.Models.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card border-secondary" style="margin-top: 50px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8"><h5>Perfil Administrador</h5></div>
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vModificarAdministrador" , id: "btnEdit" , label: "Guardar cambios" , buttonType: "success")
+                @Html.CtrlButton(viewName: "vListarLocalizaciones" , id: "btnCancel" , label: "Cancelar" , buttonType: "danger")
+            </div>
+        </div>
+    </div>
+    <div class="card-body" id="FormularioAdmin">
+        <form autocomplete="off" id="frmEditar">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.CtrlInput(id: "selectTipoId" , type: "text" , label: "Tipo de identificación: " , columnDataName: "TipoIdentificacion")
+                    @Html.CtrlInput(id: "txtId" , type: "text" , label: "Número de identificación: " , columnDataName: "Identificacion")
+                    @Html.CtrlInputRequeridedModel(id: "txtNombre" , type: "text" , label: "Nombre: " , columnDataName: "Nombre" , ariaDescribedby: "valName" , idSmall: "valName" , pattern: @"([A-a])\w+")
+                    @Html.CtrlInputRequeridedModel(id: "txtApellidoUno" , type: "text" , label: "Primer apellido: " , columnDataName: "ApellidoUno" , ariaDescribedby: "valAp" , idSmall: "valAp" , pattern: @"([a-z] || [A-Z])\w+")
+                    @Html.CtrlInput(id: "txtApellidoDos" , type: "text" , label: "Segundo apellido: " , columnDataName: "ApellidoDos")
+                </div>
+                <div class="col-md-6">
+                    @Html.CtrlInput(id: "txtFechaNacimiento" , type: "date" , label: "Fecha de nacimiento: " , columnDataName: "FechaNacimiento")
+                    @Html.CtrlInput(id: "selectPais" , type: "text" , label: "País de nacimiento" , columnDataName: "PaisNacimiento")
+                    @Html.CtrlListModel(id: "selectGenero" , label: "Género: " , columnDataName: "Genero" , ariaDescribeby: "genre" , idSmall: "genre")
+                    @Html.CtrlInputRequeridedModel(id: "txtTelefono" , type: "text" , label: "Teléfono: " , columnDataName: "Telefono" , ariaDescribedby: "valTel" , idSmall: "valTel" , pattern: @"[0-9]{8,}")
+                    @Html.CtrlInputRequeridedModel(id: "txtCorreo" , type: "email" , label: "Correo electrónico: " , columnDataName: "Correo" , ariaDescribedby: "valEmail" , idSmall: "valEmail" , placeholder: "user@example.com" , pattern: @"[^@\s]+@[^@\s]+")
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/Views/vModificarAdministrador.js"></script>
+    }

@@ -1,0 +1,66 @@
+﻿@using WebApp.Models.Helpers;
+<script src="~/Scripts/Views/vRegistroTrabajador.js"></script>
+<script src="~/Scripts/Views/vRegresoInicio.js"></script>
+
+@* CAPCHAT *@
+@using BotDetect.Web.Mvc;
+@* CAPCHAT *@
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.CtrlModalModel(idModal: "modalRegistrarOferente", title: "Ocurrio un error", idParrafo: "errorRegistro",
+                    viewName: "", id: "", label: "", onClickFunction: "", buttonType: "")
+@Html.CtrlModalModel(idModal: "modalRegistrarOfe", title: "Felicidades", idParrafo: "buenRegistro",
+                    viewName: "", id: "", label: "", onClickFunction: "", buttonType: "")
+
+<div class="card border-secondary" style="margin-top: 50px; margin-bottom: 50px; display: block" id="RegistroTrabajador">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Registrar trabajador</div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+    <div class="card-body" id="FormularioTrabajador">
+        <form autocomplete="off" id="frmTrabajador">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="bs-component">
+                        <h2 id="tituloT" style="display:block">Datos del trabajador</h2>
+
+                        @Html.CtrlInputRequeridedModel(id: "txtNombre", type: "text", label: "Nombre: ", columnDataName: "Nombre", ariaDescribedby: "valName", idSmall: "valName", pattern: @"([A-a])\w+")
+                        @Html.CtrlInputRequeridedModel(id: "txtApellido1", type: "text", label: "Primer apellido: ", columnDataName: "Apellido1", ariaDescribedby: "valAp1", idSmall: "valAp1", pattern: @"([A-a])\w+")
+                        @Html.CtrlInput(id: "txtApellido2", type: "text", label: "Segundo apellido", columnDataName: "Apellido2")
+                        @Html.CtrlInputRequeridedModel(id: "txtCedula", type: "text", label: "Cédula: ", columnDataName: "Cedula", ariaDescribedby: "valId", idSmall: "valId", pattern: @"[0-9]{9,}")
+                        @Html.CtrlListModel(id: "selectGenero", label: "Género", columnDataName: "Genero", ariaDescribeby: "genre", idSmall: "genre")
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bs-component">
+                        <h2 style="color:transparent">Titulo escondido</h2>
+                        @Html.CtrlInputRequeridedModel(id: "txtCorreo", type: "email", label: "Correo electrónico: ",
+                       columnDataName: "Correo", ariaDescribedby: "valEmail", idSmall: "valEmail", placeholder: "user@example.com", pattern: @"[^@\s]+@[^@\s]+")
+                        @Html.CtrlInputRequeridedModel(id: "txtFecNacimiento", type: "date", label: "Fecha de nacimiento: ", columnDataName: "FecNacimiento", ariaDescribedby: "valDate", idSmall: "valDate", min: "1960-01-01", max: "2020-05-05")
+                        @*Captcha*@
+                        <div id="botdetect-captcha" data-captchastylename="jqueryFormCaptcha"></div>
+                        @Html.CtrlInputCptchaModelCtrl(id: "userCaptchaInput", type: "text", label: "Escriba los caracteres del cuadro para verificar que no es un robot: ", columnDataName: "", ariaDescribedby: "captcha", idSmall: "captcha", textSmall: "Este campo es requerido.", textSpan: "")
+
+                        @*<label>
+                            <span>Escriba los caracteres del cuadro para verificar que no es un robot:</span>
+                            <input type="text"
+                                   id="userCaptchaInput">
+                        </label>*@
+
+                        <script src="~/Scripts/jquery-captcha.min.js"></script>
+                        @*Captcha*@
+
+                        @Html.CtrlButton(viewName: "vRegistroTrabajador", id: "btnCrearTrabajador", label: "Registrar", onClickFunction: "CrearTrabajador", buttonType: "success")
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+
+Log Entry : 8:42:02 PM Friday, April 17, 2020
+  :
+  :12 - No se encontraron resultados:
+No se encontraron resultados
+   at CoreAPI.MembresiaManager.RetriveAllByEmpresa(Membresia membresiaObj) in C:\Users\Mega\source\repos\Proyecto_Final_2I\CoreAPI\MembresiaManager.cs:line 46
+
+
+-------------------------------

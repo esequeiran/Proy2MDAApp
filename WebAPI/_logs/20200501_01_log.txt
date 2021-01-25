@@ -1,0 +1,27 @@
+
+Log Entry : 1:14:07 AM Friday, May 1, 2020
+  :
+  :0 - Ocurrió un problema, intente más tarde:
+Object reference not set to an instance of an object.
+
+
+
+-------------------------------
+
+Log Entry : 1:15:26 AM Friday, May 1, 2020
+  :
+  :0 - Ocurrió un problema, intente más tarde:
+Object reference not set to an instance of an object.
+
+
+
+-------------------------------
+
+Log Entry : 1:22:35 AM Friday, May 1, 2020
+  :
+  :0 - Ocurrió un problema, intente más tarde:
+Object reference not set to an instance of an object.
+
+
+
+-------------------------------

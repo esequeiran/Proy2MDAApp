@@ -1,0 +1,46 @@
+﻿@using WebApp.Models.Helpers;
+
+<script src="~/Scripts/Views/vAdministrarTarifas.js"></script>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.CtrlTable(viewName: "vAdministrarTarifas", id: "tblTarifas", title: "Lista de tarifas",
+    columnsTitle: "Descripción,Precio",
+    ColumnsDataName: "DescripcionParametro,PrecioPorCancelar",
+    onSelectFunction: "BindFields", colorHeader: "white")
+
+@*IdParametro*@
+<div class="card border-secondary" style="margin-top: 50px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Editar tarifas</div>
+            <div class="col-md-4">
+
+                @Html.CtrlButton(viewName: "vAdministrarTarifas", id: "btnUpdate", label: "Guardar cambios", onClickFunction: "Update", buttonType: "info")
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bs-component">
+                    <form id="frmEdicion">
+                        <div id="divId">
+                            @Html.CtrlInput(id: "txtIdMembresia", type: "number", label: "", columnDataName: "IdParametro")
+                        </div>
+                        @Html.CtrlInput(id: "txtNombreMembresia", type: "text", label: "Descripción", columnDataName: "DescripcionParametro")
+
+                        @Html.CtrlInputMonedaModel(id: "txtPrecioPorCancelar", type: "text", label: "Precio", columnDataName: "PrecioPorCancelar",
+                       ariaDescribedby: "valPrecio", idSmall: "valPrecio", pattern: @"^\$\d{1,3}(,\d{3})*(\.\d+)?$", min: "0",
+                       name: "currency-field", dataType: "currency")
+
+                        @*@Html.CtrlInput(id: "txtPrecioPorCancelar", type: "number", label: "Precio", columnDataName: "PrecioPorCancelar", IsRequired: "required", min: "0")*@
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

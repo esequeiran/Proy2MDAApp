@@ -1,0 +1,9 @@
+
+Log Entry : 04:43:57 p. m. sábado, 25 de abril de 2020
+  :
+  :7 - Usuario o contraseña no válidos:
+Usuario o contraseña no válidos
+   en CoreAPI.LoginTokenManager.RetrieveById(LoginToken pCredenciales) en C:\Users\Evese\Source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\CoreAPI\LoginTokenManager.cs:línea 43
+
+
+-------------------------------

@@ -1,0 +1,59 @@
+﻿
+
+@using WebApp.Models.Helpers;
+
+<script src="~/Scripts/Views/ControlActions.js"></script>
+<script src="~/Scripts/Views/vTipoTrabajoPorEmpresa.js"></script>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@*Despliga la lista*@
+@Html.CtrlTable(viewName: "vTipoTrabajoPorEmpresa", id: "tblTipoTrabajoPorEmpresa", title: "Tipo de trabajo lista", columnsTitle: "Nombre tipo de trabajo,Costo por hora", 
+    ColumnsDataName: "Nombre_TipoTrabajo,Costo_Por_Hora", onSelectFunction: "BindFields")
+
+
+<div class="card border-secondary" style="margin-top: 50px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Edición de costo por hora</div>
+            @*Boton registrar o crear*@
+        <div class="col-md-4">
+            @Html.CtrlButton(viewName: "vTipoTrabajoPorEmpresa", id: "btnCreate", label: "Registrar", onClickFunction: "Create", buttonType: "success")
+            @Html.CtrlButton(viewName: "vTipoTrabajoPorEmpresa", id: "btnUpdate", label: "Modificar", onClickFunction: "Update", buttonType: "info")
+            @Html.CtrlButton(viewName: "vTipoTrabajoPorEmpresa", id: "btnDelete", label: "Eliminar", onClickFunction: "Delete", buttonType: "danger")
+        </div>
+
+        </div>
+    </div>
+
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bs-component">              
+                   
+                    <form id="frmEdition">
+
+
+                        @Html.CtrlDropDownTipoTrabajo(id: "lstTipoTrabajo", label: "Seleccione un tipo de trabajo", listId: "TipoDeTrabajo", columnDataName: "Id_TipoTrabajo")
+
+
+                        @*@Html.CtrlInput(id: "txtCostoPorHora", type: "text", label: "Costo por hora", columnDataName: "Costo_Por_Hora")*@
+
+                        @Html.CtrlInputMonedaModel(id: "txtCostoPorHora", type: "text", label: "Costo por hora", columnDataName: "Costo_Por_Hora", ariaDescribedby: "valPrecio",
+                        idSmall: "valPrecio", pattern: @"^\$\d{1,3}(,\d{3})*(\.\d+)?$", min: "0", name: "currency-field", dataType: "currency")
+
+
+                        @*MODAL*@
+                        @Html.CtrlModalModel(id: "envio", title: "Confirmación", idParrafo: "1", contenidoParrafo: "¿Esta seguro que desea eliminar el costo por hora?", viewName: "vTipoTrabajoPorEmpresa", idModal: "ready", label: "Aceptar", onClickFunction: "ConfirmarEliminar")
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

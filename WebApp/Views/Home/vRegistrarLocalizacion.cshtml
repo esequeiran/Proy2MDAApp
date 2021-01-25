@@ -1,0 +1,51 @@
+﻿@using WebApp.Models.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_LayoutSimple.cshtml";
+}
+<div class="card border-secondary" style="margin-top: 5px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8"><h3>Registro Localización</h3></div>
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vRegistrarLocalizacion" , id: "btnCrear" , label: "Registrar" , buttonType: "success")
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-body" id="FormularioLocalizacion">
+    <div class="row">
+        <div class="col-md-6">
+            <form id="frmCreate">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.CtrlInputRequeridedModel(id: "txtNombre" , type: "text" , label: "Nombre: " , columnDataName: "Nombre" , ariaDescribedby: "nombreLoc" , idSmall: "nombreLoc" , pattern: @"([A-Za-z .]{3,})\w+")
+                        @Html.CtrlListModel(id: "sltProvincias" , label: "Provincia: " , columnDataName: "Provincia" , ariaDescribeby: "provincia" , idSmall: "provincia")
+                        @Html.CtrlListModel(id: "sltCantones" , label: "Cantón: " , columnDataName: "Canton" , ariaDescribeby: "canton" , idSmall: "canton")
+                        @Html.CtrlListModel(id: "sltDistritos" , label: "Distrito: " , columnDataName: "Distrito" , ariaDescribeby: "distrito" , idSmall: "distrito")
+                        @*@Html.CtrlInputRequeridedModel(id: "txtOtrasSennas" , type: "text" , label: "Otras señas: " , columnDataName: "OtrasSennas" , ariaDescribedby: "otrassennas" , idSmall: "otrassennas" , pattern: @"([A-Za-z .]{3,})\w+")*@
+
+                        @Html.CtrlInputCptchaModelCtrl(id: "txtOtrasSennas" , type: "text" , label: "Otras señas: " , columnDataName: "OtrasSennas" , ariaDescribedby: "otrassennas" , idSmall: "otrassennas" , textSmall: "Este dato es requerido." , textSpan: "")
+
+                        @Html.CtrlInputCptchaModelCtrl(id: "txtLongitud" , type: "text" , label: "Latitud: " , columnDataName: "Latitud" , ariaDescribedby: "Latitud" , idSmall: "Latitud" , textSmall: "Este dato es requerido. ", textSpan: "")
+                        @Html.CtrlInputCptchaModelCtrl(id: "txtLatitud" , type: "text" , label: "Longitud: " , columnDataName: "Longitud" , ariaDescribedby: "Longitud" , idSmall: "Longitud" , textSmall: "Este dato es requerido." , textSpan: "")
+                        @*@Html.CtrlInput(id: "txtLatitud" , type: "text" , label: "Latitud: " , columnDataName: "Latitud")*@
+                        @*@Html.CtrlInput(id: "txtLongitud" , type: "text" , label: "Longitud: " , columnDataName: "Longitud")*@
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <label>Ubicación:</label>
+            <div id='map' style='width: 100%; height: 80%;'></div>
+        </div>
+
+        @Html.CtrlModalModel(id: "envio" , title: "Registro completo" , idParrafo: "1" , contenidoParrafo: "Su solicitud de registro ha sido enviada éxitosamente." , viewName: "" , idModal: "ready" , label: "Aceptar")
+        @Html.CtrlModalModel(id: "cliente" , title: "Registro completo" , idParrafo: "1" , contenidoParrafo: "Se ha enviado a su correo electrónico para ingresar su contraseña." , viewName: "" , idModal: "registrarContrasenna" , label: "Aceptar")
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/Views/vRegistrarLocalizacion.js"></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+}

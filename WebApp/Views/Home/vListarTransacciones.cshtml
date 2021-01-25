@@ -1,0 +1,16 @@
+﻿@using WebApp.Models.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@Html.CtrlTblModel(viewName: "vListarTransacciones" , id: "tblTransacciones" , title: "Movimientos" ,
+    columnsTitle: "Fecha,Monto,Concepto,Tipo de movimiento" ,
+    ColumnsDataName: "Fecha,Monto,Concepto,TipoMovimiento" ,
+     colorHeader: "red")
+
+@section Scripts {
+    <script src="~/Scripts/Views/vListarTransacciones.js"></script>
+    <script src="~/Scripts/Views/ControlJRAS.js"></script>
+}

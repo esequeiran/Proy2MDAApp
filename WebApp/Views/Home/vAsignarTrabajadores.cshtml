@@ -1,0 +1,38 @@
+﻿@using WebApp.Models.Helpers;
+<script src="~/Scripts/Views/vAsignarTrabajadores.js"></script>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card border-secondary" style="margin-top: 50px; display: block" id="RegistroTrabajador">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Trabajadores disponibles</div>
+
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vAsignarTrabajadores", id: "btnAsignar", label: "Asignar", onClickFunction: "Asignar", buttonType: "success")
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.CtrlTable(viewName: "vAsignarTrabajadores", id: "tblTrabajadoresDisponibles", title: "",
+    columnsTitle: "Cédula,Nombre,Primer Apellido,Segundo Apellido, Fecha de nacimiento,Género,Correo,Número de empresa",
+    ColumnsDataName: "Cedula,Nombre,Apellido1,Apellido2,FecNacimiento,Genero,Correo,IdEmpresa", onSelectFunction: "ActivarBoton")
+
+
+<div class="card border-secondary" style="margin-top: 50px; display: block" id="RegistroTrabajador">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Trabajadores asignados</div>
+
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vAsignarTrabajadores", id: "btnEliminar", label: "Eliminar", onClickFunction: "Eliminar", buttonType: "danger")
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.CtrlTable(viewName: "vAsignarTrabajadores", id: "tblTrabajadoresAsignados", title: "",
+    columnsTitle: "Cédula,Nombre,Primer Apellido,Segundo Apellido, Fecha de nacimiento,Género,Correo,Número de empresa",
+    ColumnsDataName: "Cedula,Nombre,Apellido1,Apellido2,FecNacimiento,Genero,Correo,IdEmpresa", onSelectFunction: "EliminarBoton")

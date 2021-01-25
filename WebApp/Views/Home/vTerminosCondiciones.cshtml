@@ -1,0 +1,39 @@
+﻿@using WebApp.Models.Helpers;
+<script src="~/Scripts/Views/vTerminosCondiciones.js"></script>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card-header">
+    <div class="row pull-right">
+        <div class="col-md-8">Edición Términos & condiciones</div>
+        <div class="col-md-4">           
+            @Html.CtrlButton(viewName: "vTerminosCondiciones", id: "btnUpdate", label: "Modificar", onClickFunction: "Update", buttonType: "info")           
+        </div>
+    </div>
+</div>
+
+@*Despliga la lista*@
+@*@Html.CtrlTable(viewName: "vTerminosCondiciones", id: "tblTerminosCondiciones", title: "Términos & Condiciones",
+    columnsTitle: "Términos & Condiciones",
+    ColumnsDataName: "Terminos", onSelectFunction: "BindFields")*@
+
+<div class="card-body" id="Edición Terminos & condiciones">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="bs-component">
+                <form id="frmEditar">
+                    @Html.CtrlTextArea(id:"txtTerminos", label:"Edición", columnDataName:"terminos", isRequired: true, ariaDescribedby:"Terminos", idSmall:"Terminos", maxlength:"1000")
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@*<form id="frmEditar">
+        @Html.CtrlInputRequeridedModel(id: "txtTerminos", type: "number", label: "Porcentaje IVA: ", columnDataName: "PorcentajeIVA", ariaDescribedby: "iva", idSmall: "iva", pattern: @"([A-Za-z .]{3,})\w+")
+    </form>*@

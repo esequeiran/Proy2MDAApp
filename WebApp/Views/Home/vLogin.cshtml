@@ -1,0 +1,59 @@
+﻿@using WebApp.Models.Helpers;
+@{
+    ViewBag.Title = "Inicio de sesión";
+    Layout = "~/Views/Shared/_LayoutSimple.cshtml";
+}
+
+@section Styles {
+    <link href="@Url.Content("~/Content/Views/")cardsLogins.css" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/Views/")vLogin.css" rel="stylesheet" type="text/css">
+}
+
+
+<div class="row">
+    <div class="col-12 col-sm-8 col-md-4 offset-sm-2 offset-md-4">
+        <div class="card my-sm-0">
+            <div class="card-header text-center">
+                <h4 class="card-title my-0">@ViewBag.Title</h4>
+            </div>
+            <div class="card-body pb-1">
+                <form id="frmLogin">
+                    @Html.CtrlInputHorizontal(id: "txtCorreo", type: "email", label: "Correo electrónico", placeHolder: "", columnDataName: "Correo", IsRequired: "required", min: "", max: "", pattern: "", idFeedback: "divMsjInputCorreo", autofocus: true)
+
+                    @Html.CtrlInputHorizontal(id: "txtContrasenna", type: "password", label: "Contraseña", placeHolder: "", columnDataName: "Contrasenna", IsRequired: "required", min: "", max: "", pattern: "", idFeedback: "divMsjInputPW")
+                </form>
+                <div class="form-group row">
+                    <div class="text-center col-12 col-lg-8 offset-lg-4">
+                        @Html.CtrlButton(viewName: "vLogin", id: "btnIniciarSesion", label: "Iniciar sesión", onClickFunction: "InicioSesion", buttonType: "primary", dataToggle: "", dataTarget: "", customClass: "btn-block fadeIn first")
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer pt-0 text-center">
+                <div class="m-0 p-0 d-inline-flex">
+                    <p class="col-6 m-0 p-0">
+                        @Html.ActionLink("¿Ha olvidado la contraseña?", "vRecuperarContrasenna", "Home", new { @class = "nav-link p-0" })
+                    </p>
+                    <p class="col-6 m-0 p-0">
+                        <span class="text-muted">¿No tienes una cuenta?</span>
+                        @Html.ActionLink("¡Regístrate!", "vElegirTipoRegistro", "Home", new { @class = "nav-link p-0" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/Views/vLogin.js"></script>
+    <script>
+        'use strict';
+    </script>
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,148 @@
+﻿@{
+    ViewBag.Title = "Maridos De Alquiler";
+    ViewBag.TitleSmall = "MDA";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="@ViewBag.Title">
+    <meta name="author" content="Aureosoft">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/dataTables")
+    @Styles.Render("~/Content/theme")
+    @Styles.Render("~/Content/custom")
+    <link rel="shortcut icon" type="image/png" href="@Url.Content("~/Images/")favicon.png" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/Views/")vLandingPage.css">
+</head>
+<body>
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary  text-light">
+        <a class="navbar-brand mr-0 mr-md-2 text-center" href="@Url.Action("Index", "Home")" aria-label="@ViewBag.Title">
+            <img style="width:40px;" src="@Url.Content("~/Images/")logo.png" alt="logo" class="mr-2"><strong>@ViewBag.TitleSmall</strong>
+        </a>
+        <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <li class="nav-item mx-auto mx-sm-auto mx-md-2 mx-lg-2 mx-xl-2">
+
+                @Html.ActionLink("Iniciar sesión", "vLogin", "Home", new { @class = "nav-link py-0 py-sm-2 btn-theme waves" })
+
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container-fluid mb-5">
+
+        <section>
+            <header class="jumbotron my-4">
+                <div>
+                    <h1 class="display-3">¡Bienvenidos!</h1>
+                    <p class="lead mb-0">@ViewBag.TitleSmall es una aplicaci&oacute;n que le permitir&aacute; contratar servicios de mantenimiento para la vivienda o el negocio.</p>
+                    <p class="lead mb-0">As&iacute; como ofrecer sus servicios de mantenimiento a nuestros clientes.</p>
+                    <p class="lead mb-3">Pensado en las personas que trabajan como <a href="https://es.wikipedia.org/wiki/Freelance" class="text-white">Freelancers</a>.</p>
+
+                    @Html.ActionLink("¡Regístrese ahora mismo!", "vElegirTipoRegistro", "Home", new { @class = "btn btn-md btn-theme waves" })
+                </div>
+            </header>
+        </section>
+
+        <section class="oferta">
+            <div class="row text-center my-5">
+                <div class="col-lg-12 my-5">
+                    <div class="my-5 py-5">
+                        <h1 class="px-sm-1">¿Qui&eacute;n puede ofrecer sus servicios a trav&eacute;s de nuestra plataforma?</h1>
+                        <h5>Tanto empresas como individuos.</h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="servicios">
+            <div class="row text-center m-y5">
+                <div class="col-lg-12 mb-5">
+                    <div class="mb-5 py-5">
+                        <h1 class="pb-5 text-dark">Servicios disponibles</h1>
+
+                        <div class="row text-center px-4">
+
+                            <div class="col-lg-3 col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-dark">Electricista</h4>
+                                        <p class="card-text"></p>
+                                        <img class="card-img-bottom" src="@Url.Content("~/Images/")electricidad.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-dark">Carpinter&iacute;a</h4>
+                                        <p class="card-text"></p>
+                                        <img class="card-img-bottom" src="@Url.Content("~/Images/")serrucho.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-dark">Plomer&iacute;a</h4>
+                                        <p class="card-text"></p>
+                                        <img class="card-img-bottom" src="@Url.Content("~/Images/")plumber.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-dark">Pintura</h4>
+                                        <p class="card-text"></p>
+                                    </div>
+                                    <img class="card-img-bottom" src="@Url.Content("~/Images/")rodilloPinta.png" alt="">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- /.container -->
+
+
+    <footer class="py-5 bg-light mt-auto border border-bottom-0 border-left-0 border-right-0 border-secundary">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">&copy; @DateTime.Now.Year - <span>@ViewBag.TitleSmall</span></div>
+                <div class="text-muted">
+                    Hecho con <span class="text-danger"><i class="fas fa-heart"></i></span>
+                    por <a href="javascript:void 0;">Aureosoft</a>
+                </div>
+                <div>
+                    <a href="javascript:void 0;">Pol&iacute;tica de privacidad</a>
+                    &middot;
+                    <a href="javascript:void 0;">T&eacute;rminos &amp; Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="@Url.Content("~/Scripts/Views/")vLandingPage.js"></script>
+
+</body>
+</html>

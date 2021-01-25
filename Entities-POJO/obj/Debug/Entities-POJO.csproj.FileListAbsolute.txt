@@ -1,0 +1,12 @@
+C:\Users\Evese\Source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\Entities-POJO\bin\Debug\Entities-POJO.dll
+C:\Users\Evese\Source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\Entities-POJO\bin\Debug\Entities-POJO.pdb
+C:\Users\Evese\Source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\Entities-POJO\bin\Debug\CloudinaryDotNet.dll
+C:\Users\Evese\Source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\Entities-POJO\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Evese\Source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\Entities-POJO\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Evese\Source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\Entities-POJO\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\Evese\Source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\Entities-POJO\bin\Debug\CloudinaryDotNet.xml
+C:\Users\Evese\Source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\Entities-POJO\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Evese\Source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\Entities-POJO\obj\Debug\Entities-POJO.csproj.CoreCompileInputs.cache
+C:\Users\Evese\Source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\Entities-POJO\obj\Debug\Entities-POJO.csproj.CopyComplete
+C:\Users\Evese\Source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\Entities-POJO\obj\Debug\Entities-POJO.dll
+C:\Users\Evese\Source\Workspaces\proyectoFinalPISW2_1\ProyectoFinalV-branchDevOps\Entities-POJO\obj\Debug\Entities-POJO.pdb

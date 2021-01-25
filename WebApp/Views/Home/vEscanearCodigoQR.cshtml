@@ -1,0 +1,103 @@
+﻿@using WebApp.Models.Helpers;
+
+<script src="~/Scripts/Views/vEscanearCodigoQR.js"></script>
+
+
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/grid.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/version.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/detector.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/formatinf.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/errorlevel.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/bitmat.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/datablock.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/bmparser.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/datamask.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/rsdecoder.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/gf256poly.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/gf256.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/decoder.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/qrcode.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/findpat.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/alignpat.js"></script>
+<script type="text/javascript" src="~/Scripts/Views/qrDecode/databr.js"></script>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card border-secondary" style="margin-top: 50px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Escanear código QR</div>
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vEscanearCodigoQR", id: "btnEscanear", label: "Escanear", onClickFunction: "Escanear", buttonType: "info")
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-component">                  
+                    <div class="row">
+                        <div class="col-md-2">
+                           
+                        </div>
+                        <div class="col-md-8" style="text-align: center;">
+                            <h6>Captura de código QR</h6>
+                            <div id="reader" class="divLogoCodigoQR" style="width:400px;height:400px; border: double 10px rgba(0,0,0,.125); margin: 0 auto;">
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-2">                           
+
+                        </div>
+                    </div>
+                                                      
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .divLogoCodigoQR {
+        background-image: url('../../Images/qr_codeLogo.png');
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: 100%;
+    }
+
+</style>
+@*<div class="row">
+    <div class="col-md-12">
+        <h2>QR Code</h2>
+   
+        <h6>Result</h6>
+        <span id="read" class="center"></span>
+        <br>
+    </div>
+</div>*@
+
+@section scripts
+{
+    @*<script>
+        $(document).ready(function () {
+       
+            $('#reader').html5_qrcode(function (data) {
+                alert(data);
+                $('#reader').html5_qrcode_stop();
+            },
+                function (error) {
+                    console.log(error);
+                }, function (videoError) {
+                    console.log(videoError);
+                }
+            );
+        });
+    </script>*@
+}
+
+
+

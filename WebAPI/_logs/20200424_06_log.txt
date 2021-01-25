@@ -1,0 +1,19 @@
+
+Log Entry : 6:42:24 PM Friday, April 24, 2020
+  :
+  :0 - Ocurrió un problema, intente más tarde:
+Specified cast is not valid.
+
+
+
+-------------------------------
+
+Log Entry : 6:53:34 PM Friday, April 24, 2020
+  :
+  :0 - Ocurrió un problema, intente más tarde:
+Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+
+
+
+-------------------------------

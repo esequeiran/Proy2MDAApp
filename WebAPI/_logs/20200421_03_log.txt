@@ -1,0 +1,18 @@
+
+Log Entry : 3:55:17 AM Tuesday, April 21, 2020
+  :
+  :0 - Ocurrió un problema, intente más tarde:
+Ocurrió un problema, intente más tarde
+   at CoreAPI.EstadosUsuarioManager.RetrieveAll() in C:\Users\adria\source\Workspaces\proyectoFinalPISW2\ProyectoFinalV-branchDevOps\CoreAPI\EstadosUsuarioManager.cs:line 29
+
+
+-------------------------------
+
+Log Entry : 3:55:17 AM Tuesday, April 21, 2020
+  :
+  :0 - Ocurrió un problema, intente más tarde:
+Ocurrió un problema, intente más tarde
+   at CoreAPI.EstadosUsuarioManager.RetrieveAllCambio() in C:\Users\adria\source\Workspaces\proyectoFinalPISW2\ProyectoFinalV-branchDevOps\CoreAPI\EstadosUsuarioManager.cs:line 47
+
+
+-------------------------------

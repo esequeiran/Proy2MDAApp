@@ -1,0 +1,100 @@
+﻿@using WebApp.Models.Helpers;
+
+<script src="~/Scripts/Views/starrr.js"></script>
+<script src="~/Scripts/Views/vRegistrarEvaluacionSolicitudTrabajo.js"></script>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.CtrlTable(viewName: "vRegistrarEvaluacionSolicitudTrabajo", id: "tblSolicitudesPendientesEvaluacion", title: "Lista de solicitudes pendientes de evaluación",
+    columnsTitle: "Explicación del trabajo,Empresa,Estado",
+    ColumnsDataName: "ExplicacionTrabajo,NombreEmpresa,NombreEstado",
+    onSelectFunction: "BindFields", colorHeader: "white")
+
+
+
+<div class="card border-secondary" style="margin-top: 5px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8"><h3>Registro de evaluación</h3></div>
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vRegistrarEvaluacionSolicitudTrabajo", id: "btnCrear", label: "Registrar", onClickFunction: "Create", buttonType: "success")
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="divContenedorformularios" class="bs-component">
+                    <form id="frmCrearSolicitud">
+                        <div class="row">
+                            <div id="divId">
+                                @Html.CtrlInput(id: "idSolicitud", type: "text", label: "IdSolicitud", columnDataName: "IdSolicitud")
+                                @Html.CtrlInput(id: "tipoCedulaEmpresa", type: "text", label: "IdSolicitud", columnDataName: "EmpresaTipoCedula")
+                                @Html.CtrlInput(id: "idValoracionestellasTrabajo", type: "text", label: "IdSolicitud", columnDataName: "ValoracionEstrellas")
+                            </div>
+
+                            <div class="col-md-6">
+                                <h6 id="h6NombreEmpresa"></h6>
+                                <h6 id="h6TipoDeOferente"></h6>
+                                <h6>Evaluación</h6>
+                                <span id="Estrellas"></span>
+                                @Html.CtrlTextArea(id: "txtComentarioTrabajo", label: "Comentario", columnDataName: "ComentarioTrabajo",
+                                isRequired: true, ariaDescribedby: "txtComen", idSmall: "txtComen", maxlength: "200")
+
+
+
+                            </div>
+                            <div class="col-md-6">                               
+                                <label for="C">Fotos del trabajo realizado</label>
+                                <div class="custom-file" id="F">
+                                    <input type="file" id="F1" class="custom-file-input" lang="es" required>
+                                    <label id="foto1" class="custom-file-label" for="curriculum">Seleccionar archivo</label>
+                                </div>
+                                <div class="custom-file" id="F2">
+                                    <input type="file" id="F2" class="custom-file-input" lang="es" required>
+                                    <label id="foto2" class="custom-file-label" for="curriculum">Seleccionar archivo</label>
+                                </div>
+                                <div class="custom-file" id="F3">
+                                    <input type="file" id="F3" class="custom-file-input" lang="es" required>
+                                    <label id="foto3" class="custom-file-label" for="curriculum">Seleccionar archivo</label>
+                                </div>
+
+
+                              
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="divFormulariosTrabajadores">
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .starrr {
+        display: inline-block;
+    }
+
+        .starrr a {
+            font-size: 16px;
+            padding: 0 1px;
+            cursor: pointer;
+            color: #ffc107;
+            text-decoration: none;
+        }
+</style>
+
+<script src="~/Scripts/Views/vFotosEvaluacionCloud.js"></script>

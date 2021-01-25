@@ -1,0 +1,139 @@
+﻿
+.navbar-nav .nav-item::after {
+    background-color: transparent;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: rgb(30,30,30);
+}
+
+.btn-theme,
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(6, 43, 83);
+}
+
+.btn-theme {
+    background: #ffbb02;
+    padding: 0.25rem 1.56rem !important;
+    overflow: hidden;
+    position: relative;
+    border: none;
+    text-transform: uppercase;
+    font-family: Open Sans;
+    font-weight: 400;
+    -webkit-box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.20);
+    -moz-box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.20);
+    box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.20);
+    border-radius: 30px;
+    text-shadow: none;
+    background-position: center;
+    transition: background 0.8s;
+    outline: none;
+    box-shadow: 0 0 4px #999;
+}
+
+    .btn-theme::after,
+    .btn-theme:hover::after {
+        background: rgba(255, 255, 255, 0.19) none repeat scroll 0% 0%;
+        content: "";
+        position: absolute;
+        width: 50%;
+        height: 230%;
+        z-index: 1;
+        right: 0px;
+        top: 0px;
+        margin: -30px -15px 0px -50px;
+        margin: 0;
+        transform-origin: 0px 0px 0px;
+        transform: rotate(-21deg);
+        transition: all 0.6s ease 0s;
+        text-shadow: none;
+    }
+
+    .btn-theme:hover,
+    .btn.btn-theme:focus {
+        color: rgb(30,30,30);
+        background: rgb(215, 163, 22);
+        text-shadow: 0 0 0 rgb(10, 10, 10);
+    }
+
+        .btn.btn-theme:hover:active,
+        .btn.btn-theme:focus:active,
+        .btn-theme:active {
+            color: rgb(55, 90, 127);
+            background: rgb(236, 200, 101);
+            text-shadow: none;
+        }
+
+    .btn-theme:hover {
+        background: rgb(215, 163, 22) radial-gradient(circle, transparent 1%, rgb(215, 163, 22) 1%) center/15000%;
+    }
+
+    .btn-theme:active {
+        background-color: rgb(236, 200, 101);
+        background-size: 100%;
+        transition: background 0s;
+    }
+
+footer.bg-dark a {
+    color: rgb(255, 255, 255);
+}
+
+.jumbotron {
+    background-image: url(./../../Images/mantenimiento3.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0;
+}
+
+    .jumbotron > div {
+        margin: 0;
+        transform-origin: 0px 0px 0px;
+        transition: all 0.6s ease 0s;
+        background-color: rgba(10, 10, 10, 0.5);
+        color: rgb(255,255,255);
+        padding: 4rem 2rem;
+        border-radius: .3rem;
+    }
+
+    .jumbotron .lead {
+        font-size: 1.25rem;
+        font-weight: 500;
+        text-shadow: 0 1px 2px rgb(13, 12, 12);
+    }
+
+    .jumbotron .btn {
+        text-shadow: 0 0 0 rgb(13, 12, 12);
+        box-shadow: 0 10px 30px 0 rgb(132, 110, 60);
+    }
+
+.btn-theme:active,
+.jumbotron .btn:active {
+    -moz-transform: scale(0.97);
+    -webkit-transform: scale(0.97);
+    -o-transform: scale(0.97);
+    -ms-transform: scale(0.97);
+    transform: scale(0.97);
+}
+
+section.oferta {
+    background: rgb(55,90,157);
+    background: -moz-linear-gradient(90deg, rgba(55,90,157,1) 0%, rgba(107,157,186,1) 50%, rgba(55,90,157,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(55,90,157,1) 0%, rgba(107,157,186,1) 50%, rgba(55,90,157,1) 100%);
+    background: linear-gradient(90deg, rgba(55,90,157,1) 0%, rgba(107,157,186,1) 50%, rgba(55,90,157,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#375a9d",endColorstr="#375a9d",GradientType=1);
+    color: rgb(255,255,255);
+    border-radius: .3rem;
+}
+
+section.servicios {
+    background: rgb(232,230,167);
+    background: -moz-linear-gradient(90deg, rgba(232,230,167,1) 0%, rgba(213,155,16,0.5466387238489145) 50%, rgba(232,230,167,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(232,230,167,1) 0%, rgba(213,155,16,0.5466387238489145) 50%, rgba(232,230,167,1) 100%);
+    background: linear-gradient(90deg, rgba(232,230,167,1) 0%, rgba(213,155,16,0.5466387238489145) 50%, rgba(232,230,167,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e8e6a7",endColorstr="#e8e6a7",GradientType=1);
+    color: rgb(255,255,255);
+    border-radius: .3rem;
+}

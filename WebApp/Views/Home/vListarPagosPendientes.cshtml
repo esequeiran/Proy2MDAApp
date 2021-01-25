@@ -1,0 +1,106 @@
+﻿@using WebApp.Models.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //ViewBag.Title = "Pagos pendientes";
+}
+
+
+@Html.CtrlTblModel(viewName: "vRegistrarHorasTrabajadas" , id: "tblPagosPendientes" , title: "Pagos pendientes" , columnsTitle: "Mensaje, Detalle" ,
+     ColumnsDataName: "Mensaje" , colorHeader: "red")
+
+
+<div class="modal" tabindex="-1" role="dialog" id="fac">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Información de pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="invoice">
+                <div id="FacturaDePago">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 my-5">
+                        <div class="card">
+                            <div class="card-header p-4">
+                                <img style="width:4em;" src="/Images/logo.png" alt="logo" class="mr-2">
+                                <strong style="font-size: 30px">MDA</strong>
+                                <div class="float-right">
+                                    <h4 class="pt-2 d-inline-block">Factura de pago</h4>
+                                    <h4 class="mb-0">Número de orden:  <span id="numFactura"></span></h4>
+
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-4">
+                                    <div class="col-sm-6">
+                                        <h5>Fecha emisión: <span id="Fecha"></span></h5>
+                                        <h5>Cliente: <span id="nombreCompleto"></span></h5>
+                                    </div>
+                                </div>
+                                <div class="table-responsive-sm">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="center">#</th>
+                                                <th>Trabajo</th>
+                                                <th>Cantidad de horas</th>
+                                                <th class="right">Precio por hora</th>
+                                                <th class="right">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="detalleFac">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-5">
+                                    </div>
+                                    <div class="col-lg-4 col-sm-5 ml-auto">
+                                        <table class="table table-clear">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="left">
+                                                        <strong class="text-dark">Subtotal</strong>
+                                                    </td>
+                                                    <td class="right"><span id="subtotal"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left">
+                                                        <strong class="text-dark">IVA <span id="porcentajeIva"></span></strong>
+                                                    </td>
+                                                    <td class="right"><span id="equivalenteIva"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left">
+                                                        <strong class="text-dark">Total</strong>
+                                                    </td>
+                                                    <td class="right">
+                                                        <strong class="text-dark"><span id="total"></span></strong>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div id='btn1' style="margin-left: 9em; padding: 2em"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="elementH"></div>
+@Html.CtrlModalModel(id: "pago" , title: "Pago Realizado" , idParrafo: "1" , contenidoParrafo: "Su pago ha sido realizado éxitosamente." , viewName: "" , idModal: "ready" , label: "Aceptar")
+
+@section Scripts {
+    <script src="~/Scripts/Views/vListarPagosPendientes.js"></script>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script src="~/Scripts/js/html2pdf.bundle.js"></script>
+}

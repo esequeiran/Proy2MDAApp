@@ -1,0 +1,58 @@
+﻿@using WebApp.Models.Helpers;
+
+<script src="~/Scripts/Views/vAceptarOfertaPorCliente.js"></script>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.CtrlTable(viewName: "vAceptarOfertaPorCliente", id: "tblOfertas", title: "Lista de ofertas ingresadas",
+    columnsTitle: "Empresa,Presupuesto,Fecha de creación",
+    ColumnsDataName: "NombreEmpresa,PresupuestoOferta,Fecha",
+    onSelectFunction: "BindFields", colorHeader: "white")
+
+<div class="card border-secondary" style="margin-top: 50px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Aceptar oferta</div>
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vAceptarOfertaPorCliente", id: "btnAceptar", label: "Aceptar", onClickFunction: "AceptarOferta", buttonType: "info")
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-component">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Información de oferta</h6>
+                            <div id="divId">
+                                @Html.CtrlInput(id: "txtIdOferta", type: "text", label: "Id", columnDataName: "IdOferta")
+                            </div>
+                            <div id="infoTotalOferta">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Oferta</h5>
+                                        <h6 id="hNombreEmpresa" class="card-subtitle text-muted"></h6>
+                                    </div>
+                                    <ul id="ulList" class="list-group list-group-flush">
+                                        <li id="liPresupuesto" class="list-group-item"></li>
+                                        <li id="liFechaCreacion" class="list-group-item"></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.CtrlModalModel(id: "aceptarOfertaBtnModal", title: "Orden de trabajo generada", idParrafo: "1", contenidoParrafo: "Los detalles de la orden de trabajo le llegarán a su correo. Gracias por usar nuestros servicios.", viewName: "vAceptarOfertaPorCliente", idModal: "ready", label: "Aceptar", onClickFunction: "redireccionar", buttonType: "info")
+

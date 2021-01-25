@@ -1,0 +1,44 @@
+﻿@using WebApp.Models.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_LayoutSimple.cshtml";
+}
+
+@Html.CtrlTable(viewName: "vComprarMembresia" , id: "tblMembresia" , title: "Membresías disponibles" , columnsTitle: "Nombre, Tipo de membresía, Precio, Duración" ,
+    onSelectFunction: "" , ColumnsDataName: "NombreMembresia,TipoMembresia,Precio,VigenciaMeses" , colorHeader: "red")
+
+
+
+<div class="card border-secondary" style="margin-top: 50px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8"><h5>Información completa de la membresía</h5></div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form autocomplete="off" id="viewMembresia">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.CtrlInput(id: "txtNombre" , type: "text" , label: "Nombre: " , columnDataName: "NombreMembresia")
+                    @Html.CtrlInput(id: "txtTipo" , type: "text" , label: "Tipo de membresía: " , columnDataName: "TipoMembresia")
+                    @Html.CtrlInput(id: "txtPrecio" , type: "text" , label: "Precio: " , columnDataName: "Precio")
+                    @Html.CtrlInput(id: "txtDuracion" , type: "text" , label: "Duración: " , columnDataName: "VigenciaMeses")
+                </div>
+                <div class="col-md-6">
+                    @Html.CtrlInput(id: "txtFeeServicio" , type: "text" , label: "Cuota por ofrecer un servicio: " , columnDataName: "FeeServicio")
+                    @Html.CtrlInput(id: "txtFeeCancelar" , type: "text" , label: "Cuota por cancelar un servicio: " , columnDataName: "FeeCancelar")
+                    @Html.CtrlInput(id: "txtFeeReagendar" , type: "text" , label: "Cuota por reagendar un servicio: " , columnDataName: "FeeReagendar")
+                    <div id='btn1' style="margin-left: 9em; padding: 2em"></div>
+                </div>
+            </div>
+        </form>
+        @Html.CtrlModalModel(id: "pago" , title: "Pago Realizado" , idParrafo: "1" , contenidoParrafo: "Su compra ha sido realizada éxitosamente." , viewName: "" , idModal: "ready" , label: "Aceptar")
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/Views/vComprarMembresia.js"></script>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+}

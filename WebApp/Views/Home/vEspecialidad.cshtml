@@ -1,0 +1,61 @@
+﻿@using WebApp.Models.Helpers;
+    <script src="~/Scripts/Views/ControlActionsAdrian.js"></script>
+<script src="~/Scripts/Views/vEspecialidad.js"></script>
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*//VERSION NUEVA*@
+@*Despliga la lista*@
+
+@Html.CtrlTable(viewName: "vEspecialidad", id: "tblEspecialidad", title: "Especialidades lista",
+    columnsTitle: "Nombre especialidad, Estado", ColumnsDataName: "Nombre_Especialidad,Nombre_Estado", onSelectFunction: "BindFields")
+
+
+<div class="card border-secondary" style="margin-top: 50px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Edición de Especialidad</div>
+
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vEspecialidad", id: "btnCreate", label: "Registrar", onClickFunction: "Create", buttonType: "success")
+                @Html.CtrlButton(viewName: "vEspecialidad", id: "btnUpdate", label: "Modificar", onClickFunction: "Update", buttonType: "info")
+                @Html.CtrlButton(viewName: "vEspecialidad", id: "btnDelete", label: "Cambiar estado", onClickFunction: "Delete", buttonType: "primary")
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bs-component">
+
+                    <form id="frmEdition">
+                        <div class="d-none">
+                            @Html.CtrlInput(id: "txtIdNumber", type: "text", label: "Id_Number", columnDataName: "Id_Number")
+                        </div>
+
+                        @Html.CtrlInput(id: "txtNombreEspecialidad", type: "text", label: "Nombre especialidad", columnDataName: "Nombre_Especialidad", IsRequired: "required")
+                        @*@Html.CtrlInput(id: "txtEstado", type: "text", label: "Estado", columnDataName: "Id_Estado", IsRequired:"required")*@
+                        @Html.CtrlModalModel(id: "envio", title: "Confirmación", idParrafo: "1", contenidoParrafo: "¿Esta seguro que desea cambiar el estado?", viewName: "vEspecialidad", idModal: "ready", label: "Aceptar", onClickFunction: "ConfirmarEliminar")
+
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@section Scripts {
+
+    @*<script src="~/Scripts/Views/ControlActionsAdrian.js"></script>
+    <script src="~/Scripts/Views/vEspecialidad.js"></script>*@
+}
+
+

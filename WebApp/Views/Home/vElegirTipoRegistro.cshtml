@@ -1,0 +1,45 @@
+﻿@using WebApp.Models.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_LayoutSimple.cshtml";
+}
+@section Styles {
+    <link href="@Url.Content("~/Content/Views/")vTipoRegistro.css" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/Views/")cardsLogins.css" rel="stylesheet" type="text/css">
+}
+
+<h3 class="text-center">¿Cómo desea registrarse?</h3>
+
+<div class="row" >
+    <div class="col-md-3" style="padding: 15px; margin-left:26%">
+        <div class="card mt-6" style="width: 18rem;">
+            <div class="card-header"><h5 class="card-title text-center">Oferente</h5></div>
+            <div class="card-block text-center">
+                <p class="card-text " style="font-size: large ; padding: 22px">Como oferente y ofrecer mis servicios en la aplicación.</p>
+
+            </div>
+            <div class="card-block text-center" style="padding: 22px">
+                @Html.ActionLink("Enviar solicitud de registro" , "vRegistroOferente" , "Home" , new {
+                        @class = "btn"
+                    })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3" style="padding: 15px">
+        <div class="card mt-6" style="width: 18rem;">
+            <div class="card-header"><h5 class="card-title text-center">Cliente</h5></div>
+            <div class="card-block text-center ">
+                <p class="card-text" style="font-size: large; padding: 15px">Como cliente y adquirir los servicios que ofrece la aplicación.</p>
+            </div>
+            <div class="card-block text-center bg-white" style="padding: 15px">
+
+                @Html.ActionLink("Registrarme ahora" , "vRegistrarCliente" , "Home" , new {
+                        @class = "btn"
+                    })
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts { }

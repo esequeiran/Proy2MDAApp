@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="@ViewBag.Title">
+    <meta name="author" content="Aureosoft">
+    <title>@ViewBag.Title - Maridos De Alquiler (MDA)</title>
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/theme")
+    @Styles.Render("~/Content/custom")
+    @RenderSection("Styles", required: false)
+    <link rel="shortcut icon" type="image/png" href="@Url.Content("~/Images/")favicon.png" />
+</head>
+<body>
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/theme")
+    @Scripts.Render("~/bundles/controlActions")
+
+    <nav class="fixed-top sb-topnav navbar navbar-expand navbar-dark bg-primary  text-light">
+        <a class="navbar-brand mr-0 mr-md-2 text-center" href="@Url.Action("Index", "Home")" aria-label="@ViewBag.Title">
+            <img style="width:40px;" src="@Url.Content("~/Images/")logo.png" alt="logo" class="mr-2"><strong>MDA</strong>
+        </a>
+
+    </nav>
+    <main class="pt-5">
+        <div class="container-fluid">
+
+            <!-- <CUERPO_DEL_SITIO> -->
+            <div class="row mb-2 pt-3">
+                <div class="col-10 offset-1">
+                    <div id="alert_container" class="alert alert-success alert-dismissable rounded-pill shadow-sm text-center" style="display: none">
+                        <button type="button" class="close" onclick="$('#alert_container').hide()">&times;</button>
+                        <span id="alert_message"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-2 pt-1">
+                <div class="col-12">
+                    @RenderBody()
+                </div>
+            </div>
+
+            <!-- </CUERPO_DEL_SITIO> -->
+
+        </div>
+    </main>
+    <!-- fixed-bottom -->
+    <footer class="fixed-bottom py-4 bg-light border border-bottom-0 border-left-0 border-right-0 border-secundary">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">&copy; @DateTime.Now.Year - <span>MDA</span></div>
+                <div class="text-muted">
+                    Hecho con <span class="text-danger"><i class="fas fa-heart"></i></span>
+                    por <a href="javascript:void 0;">Aureosoft</a>
+                </div>
+                <div>
+                    <a href="javascript:void 0;">Pol&iacute;tica de privacidad</a>
+                    &middot;
+                    <a href="javascript:void 0;">T&eacute;rminos &amp; Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

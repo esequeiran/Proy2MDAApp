@@ -1,0 +1,18 @@
+﻿@using WebApp.Models.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //ViewBag.Title = "Registrar horas trabajadas";
+}
+
+
+
+
+@Html.CtrlTblModel(viewName: "vListarSolicitudesPendienteHoras" , id: "tblSolicitudesph" , title: "Solicitudes por registrar horas trabajadas" , columnsTitle: "Fecha en que se realizó el trabajo,Cliente,Descripción de la necesidad, " ,
+     ColumnsDataName: "Fecha, NombreCompleto, DescripcionNecesidad" , colorHeader: "red")
+
+
+
+@section Scripts {
+    <script src="~/Scripts/Views/vListarSolicitudesPendientesHoras.js"></script>
+}

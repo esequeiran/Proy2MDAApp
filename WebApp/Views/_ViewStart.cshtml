@@ -1,0 +1,14 @@
+﻿@*@{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+@{
+    if (!(ViewContext.ViewBag.Login == "vLogin") ||
+        !(ViewContext.ViewBag.Landing == "vLandingPage") ||
+        !(ViewContext.ViewBag.vRegistroOferente == "vRegistroOferente") ||
+        !(ViewContext.ViewBag.RegistrarContrasenna = "vRegistrarContrasenna") ||
+        !(ViewContext.ViewBag.RecuperarContrasenna = "vRecuperarContrasenna"))
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+    }
+}

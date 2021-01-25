@@ -1,0 +1,69 @@
+﻿@using WebApp.Models.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card border-secondary" style="margin-top: 50px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8"><h5>Perfil oferente</h5></div>
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vPerfilOferente", id: "btnGuardarCambios", onClickFunction: "AceptarCambios", label: "Guardar cambios", buttonType: "success")
+            </div>
+        </div>
+    </div>
+    <div class="card-body" id="frmOferente">
+        <form autocomplete="off" id="frmEditar">
+            <div class="row">
+                <div class="col-md-5">
+                    <h2 id="tituloU" style="display:none">Datos personales</h2>
+                    <h2 id="tituloR" style="display:none">Datos del representante legal</h2>
+                    @Html.CtrlInputOferente(id: "txtTipoOferente", type: "text", label: "Tipo oferente", columnDataName: "TipoCedulaComercial", isRequired: true, isReadOnly: true)
+                    @Html.CtrlInputRequeridedModel(id: "txtNombre", type: "text", label: "Nombre: ", columnDataName: "Nombre", ariaDescribedby: "txtNombre_val", idSmall: "txtNombre_val", pattern: @"([A-Za-z])\w+")
+                    @Html.CtrlInputRequeridedModel(id: "txtApellido1", type: "text", label: "Primer apellido: ", columnDataName: "Apellido1", ariaDescribedby: "txtApellido1_val", idSmall: "txtApellido1_val", pattern: @"([A-Za-z])\w+")
+                    @Html.CtrlInputRequeridedModel(id: "txtApellido2", type: "text", label: "Segundo apellido: ", columnDataName: "Apellido2", ariaDescribedby: "txtApellido2_val", idSmall: "txtApellido2_val", pattern: @"([A-Za-z])\w+")
+                    @Html.CtrlInputOferente(id: "txtCedula", type: "text", label: "Cédula", columnDataName: "Cedula", isRequired: true, isReadOnly: true)
+                    @Html.CtrlInputOferente(id: "txtTipoCedula", type: "text", label: "Tipo de cédula", columnDataName: "TipoCedula", isRequired: true, isReadOnly: true)
+
+
+                </div>
+                <div class="col-md-2"></div>
+
+                <div class="col-md-5">
+                    @Html.CtrlInputOferente(id: "txtGenero", type: "text", label: "Género", columnDataName: "Genero", isReadOnly: true)
+                    @Html.CtrlInputOferente(id: "txtCorreo", type: "text", label: "Correo", columnDataName: "Correo", isRequired: true, isReadOnly: true)
+                    @Html.CtrlInputRequeridedModel(id: "txtTelefono", type: "text", label: "Teléfono: ", columnDataName: "Telefono", ariaDescribedby: "txtTelefono_val", idSmall: "txtTelefono_val", pattern: @"[0-9]{8}")
+                    @Html.CtrlInputOferente(id: "txtPaisNacimiento", type: "text", label: "País de nacimiento", columnDataName: "PaisNacimiento", isReadOnly: true)
+                    @Html.CtrlInputOferente(id: "txtFecNacimiento", type: "text", label: "Fecha de nacimiento", columnDataName: "FecNacimiento", isRequired: true, isReadOnly: true)
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+
+            <div class="card-body" id="Frm">
+                <form autocomplete="off" id="frmEditar">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h2>Datos de la Empresa</h2>
+                            @Html.CtrlInputOferente(id: "txtNombreComercial", type: "text", label: "Nombre comercial", columnDataName: "NombreComercial", isRequired: true, isReadOnly: true)
+                            @Html.CtrlInputOferente(id: "txtRazonSocial", type: "text", label: "Razón social", columnDataName: "RazonSocial", isRequired: true, isReadOnly: true)
+                            @Html.CtrlInputOferente(id: "txtCedulaJuridica", type: "text", label: "Cédula jurídica", columnDataName: "CedulaJuridica", isReadOnly: true)
+
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-5">
+                            @Html.CtrlInputOferente(id: "txtFecCreacion", type: "text", label: "Fecha de creación", columnDataName: "FecCreacion", isRequired: true, isReadOnly: true)
+                            @Html.CtrlTextArea(id: "txtDescripcion", label: "Descripción: ", columnDataName: "Descripcion", ariaDescribedby: "txtDescripcion_val", idSmall: "txtDescripcion_val",maxlength:"")
+                            @Html.CtrlAModel(viewName: "" , id: "RegistrarTrabajadores" , label: "Registrar trabajador" , 
+                           onClickFunction:"window.location.href = 'vRegistroTrabajador'; return false;")
+                            @Html.CtrlAModel(viewName: "" , id: "ListarTrabajadores" , label: "Listar trabajadores" , 
+                           onClickFunction:"window.location.href = 'vListarTrabajadores'; return false;")
+                   
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </form>
+    </div>
+    <script src="~/Scripts/Views/vPerfilOferente.js"></script>
+</div>

@@ -1,0 +1,117 @@
+﻿@using WebApp.Models.Helpers;
+
+<script src="~/Scripts/Views/vListarSolicitudesTrabajoIngresadasPorOferente.js"></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.CtrlTable(viewName: "vListarSolicitudesTrabajoIngresadasPorOferente", id: "tblSolicitudTrabajo", title: "Lista de solicitudes de trabajo a ofertar",
+    columnsTitle: "Cliente,Explicación del trabajo,Presupuesto,Fecha del trabajo",
+    ColumnsDataName: "NombreCliente,ExplicacionTrabajo,Presupuesto,FechaEventoS",
+    onSelectFunction: "BindFields", colorHeader: "white")
+
+
+<div class="card border-secondary" style="margin-top: 50px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Ofertar a solicitud</div>
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vListarSolicitudesTrabajoIngresadasPorOferente", id: "btnOfetar", label: "Ofertar", onClickFunction: "Ofertar", buttonType: "info")
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-component">
+                    <form id="frmOfertar">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.CtrlInputMonedaNoRequeridoModel(id: "txtPresupuestoOferta", type: "text", label: "Presupuesto para oferta",
+                             columnDataName: "PresupuestoOferta", pattern: @"^\$\d{1,3}(,\d{3})*(\.\d+)?$", min: "0", name: "currency-field", dataType: "currency")
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="row rowOcultar">
+                        <div class="col-md-6">
+                            <div id="divId">
+                                <h6>Información de solicitud de trabajo a ofertar</h6>
+                                <form id="frmInfoSolicitud">
+                                    <div id="divId">
+                                        @Html.CtrlInput(id: "txtIdSolicitud", type: "text", label: "Id", columnDataName: "IdSolicitud")
+                                        @Html.CtrlInputMonedaNoRequeridoModel(id: "txtPresupuesto", type: "text", label: "Presupuesto",
+                                  columnDataName: "Presupuesto", pattern: @"^\$\d{1,3}(,\d{3})*(\.\d+)?$", min: "0", name: "currency-field", dataType: "currency")
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                            <div id="infoTotalSolicitud">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Información detallada de solicitud de trabajo</h5>
+                                        <h6 id="hNombreCliente" class="card-subtitle text-muted"></h6>
+                                    </div>
+                                    <ul id="ulList" class="list-group list-group-flush">
+                                        <li id="liFechaCreacion" class="list-group-item"></li>
+                                        <li id="liDescripcionNecesidad" class="list-group-item"></li>
+                                        <li id="liExplicacionTrabajo" class="list-group-item"></li>
+                                        <li id="liTiposTrabajoS" class="list-group-item"></li>
+                                        <li id="liNombreContacto" class="list-group-item"></li>
+                                        <li id="liTelefonoContacto" class="list-group-item"></li>
+                                        <li id="liPresupuestoS" class="list-group-item"></li>
+                                        <li id="liProvincia" class="list-group-item"></li>
+                                        <li id="liCanton" class="list-group-item"></li>
+                                        <li id="liDistrito" class="list-group-item"></li>
+                                        <li id="liOtrasSennas" class="list-group-item"></li>
+
+                                        @*latitud*@
+                                        @*longitud*@
+                                        @*fotos*@
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <label>Ubicación:</label>
+                            <div id='map' style='width: 100%; height: 80%;'></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h6>Fotos del problema:</h6>
+                    </div>
+
+                    <div class="row rowOcultar">
+                        <div id="divFoto1" class="col-md-4" style='border: double 10px rgba(0,0,0,.125);'>
+
+                        </div>
+
+                        <div id="divFoto2" class="col-md-4" style='border: double 10px rgba(0,0,0,.125);'>
+
+                        </div>
+
+                        <div id="divFoto3" class="col-md-4" style='border: double 10px rgba(0,0,0,.125);'>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+}
+

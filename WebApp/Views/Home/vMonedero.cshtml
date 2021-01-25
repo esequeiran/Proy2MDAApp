@@ -1,0 +1,77 @@
+﻿@using WebApp.Models.Helpers;
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.CtrlModalModel(idModal: "RecargaM", title: "Recargar monedero", idParrafo: "Recar",
+                    viewName: "", id: "recargaH", label: "", onClickFunction: "", buttonType: "")
+
+@Html.CtrlModalModel(idModal: "RetiroM", title: "Retirar dinero del monedero", idParrafo: "Reti",
+                    viewName: "", id: "retiroH", label: "", onClickFunction: "", buttonType: "")
+
+@section Styles {
+    <link href="@Url.Content("~/Content/Views/")vTipoRegistro.css" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/Views/")cardsLogins.css" rel="stylesheet" type="text/css">
+}
+<div class="card border-secondary" style="margin-top: 50px; display: block" id="">
+    <div class="card-body" id="">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="bs-component">
+                    @Html.CtrlInputOferente(id: "txtMonedero", type: "text", label: "<h2>Monedero</h2>", columnDataName: "Monedero", isRequired: true, isReadOnly: true)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3" style="padding: 15px; margin-left:26%">
+        <div class="card mt-6" style="width: 18rem;">
+            <div class="card-header"><h5 class="card-title text-center">Recargar monedero</h5></div>
+            <div class="card-block text-center">
+                <p class="card-text " style="font-size: large ; padding: 22px">Digite el monto que desea depositar en su monedero.</p>
+
+            </div>
+            <div class="card-block text-center" style="padding: 22px">
+                <div class="input-group mb-3">
+
+                    @Html.CtrlInputRequeridedModel(id: "txtMontoRecarga", type: "text", label: "<span class='input-group-text'>$</span>", columnDataName: "Monto",
+                     ariaDescribedby: "valMonto", idSmall: "valMonto", pattern: @"^\d*(\.\d{2}$)?")
+
+                </div>
+
+                @Html.CtrlButton(viewName: "vMonedero", id: "btnRecargarMonedero", label: "Recargar monedero", onClickFunction: "MontoPago", buttonType: "success")
+                <div id="btn-paypal" style="display:none"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3" style="padding: 15px; margin-left:5%;">
+        <div class="card mt-6" style="width: 18rem;">
+            <div class="card-header"><h5 class="card-title text-center">Retirar dinero del monedero</h5></div>
+            <div class="card-block text-center ">
+                <p class="card-text" style="font-size: large; padding: 15px">Digite el monto que desea retirar de su monedero.</p>
+            </div>
+            <div class="card-block text-center bg-white" style="padding: 15px">
+                <div class="input-group mb-3">
+                    @Html.CtrlInputRequeridedModel(id: "txtMontoRetiro", type: "text", label: "<span class='input-group-text'>$</span>", columnDataName: "Monto",
+                   ariaDescribedby: "valMonto", idSmall: "valMonto", pattern: @"^\d*(\.\d{2}$)?")
+                </div>
+                @Html.CtrlButton(viewName: "vMonedero", id: "btnRetiroMonedero", label: "Retirar dinero del monedero", onClickFunction: "RetiroMonedero", buttonType: "success")
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    @*<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>*@
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script src="~/Scripts/Views/vMonedero.js"></script>
+
+}
