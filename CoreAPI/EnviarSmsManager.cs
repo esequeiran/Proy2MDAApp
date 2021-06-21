@@ -10,8 +10,8 @@ namespace CoreAPI
 {
     public class EnviarSmsManager : BaseManager
     {
-        const string accountSID = "AC4f31a3c7317e32870c350f13d22b6cf5";
-        const string authToken = "4981e6d07e93585295afde4488cc261f";
+        const string accountSID = "";
+        const string authToken = "";
 
         // Initialize the TwilioClient.
 
@@ -22,7 +22,7 @@ namespace CoreAPI
                 {                
                     var message = MessageResource.Create(
                     to: new PhoneNumber("+506"+psms.Telefono),
-                    from: new PhoneNumber("+12055396452") ,
+                    from: new PhoneNumber("") ,
                     body: psms.MensajeSMS);
                 }
                     catch (TwilioException ex)
