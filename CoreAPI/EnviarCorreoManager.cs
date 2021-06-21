@@ -21,8 +21,8 @@ namespace CoreAPI
         {
             try
             {
-                //var apiKey = "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";
-                var apiKey = "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";
+                //var apiKey = "";
+              
                 var cliente = new SendGridClient(apiKey);
                 var from = new EmailAddress("aureo.soft4@gmail.com", "Aureosoft-MDA");
                 var subject = correo.Asunto;
